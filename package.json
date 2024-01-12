@@ -14,7 +14,6 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "@vitejs/plugin-vue": "^5.0.2",
-        "vue": "^3.4.5"
+        "alpinejs": "^3.13.3"
     }
 }
