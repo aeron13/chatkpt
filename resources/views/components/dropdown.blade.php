@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700'])
+@props(['align' => 'right', 'width' => '', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700'])
 
 @php
 switch ($align) {
@@ -14,16 +14,14 @@ switch ($align) {
         break;
 }
 
-switch ($width) {
-    case '48':
-        $width = 'w-48';
-        break;
+if ($width) {
+    $width = 'width: ' . $width . 'px';
 }
 @endphp
 
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+<div class="relative dropdown" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
-        <button class="inline-flex items-center px-3 py-2 text-sm leading-4 text-[16px] rounded-md border border-light " x-bind:class="{ 'border-transparent': open }">
+        <button class="inline-flex items-center px-3 py-2 text-sm leading-4 text-[16px] rounded-md border border-light" x-bind:class="{ 'border-transparent': open }">
             {{ $trigger }}
             <div class="ms-1">
                 <svg class="fill-light h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -40,10 +38,10 @@ switch ($width) {
             x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }} bg-light text-black"
-            style="display: none;"
+            class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }} bg-white text-black"
+            style="display: none; {{ $width }}"
             @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+        <div class="dropdown-content rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
             {{ $content }}
         </div>
     </div>

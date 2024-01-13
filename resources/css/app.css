@@ -1,3 +1,143 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+option[value=''] {
+    opacity: 0.5;
+}
+
+/* images */
+.bg-welcome {
+    background-image: url('../../public/img/bg-welcome-mob.svg');
+    background-position: 100px 100%;
+    background-size: cover;
+}
+
+@media (min-width: 768px) {
+    .bg-welcome {
+        background-image: url('../../public/img/bg-welcome.svg');
+        background-position: -15% top;
+        background-size: 1550px auto;
+    }
+}
+
+@media (min-width: 1280px) {
+    .bg-welcome {
+        background-position: center top;
+    }
+}
+
+nav.dashboard-nav .dropdown {
+    position: unset;
+}
+
+nav.dashboard-nav .dropdown-content {
+    position: relative;
+    width: calc(100vw - 26px);
+    right: -4px;
+    padding: 60px 40px 60px;
+}
+
+nav.dashboard-nav .categories-list li {
+    margin-bottom: 15px;
+}
+
+nav.dashboard-nav .dropdown-content a {
+    padding-left: 0;
+}
+
+nav.dashboard-nav .categories-list p {
+    color: black;
+}
+
+/* file input */
+
+input[type='file'] {
+    padding-left: 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    background: transparent;
+}
+
+input[type='file']::-webkit-file-upload-button {
+    outline: none;
+    border: none;
+    min-width: 233px;
+    text-align: start;
+    padding: 12px 16px;
+    gap: 10px;
+    border-radius: 10px 10px 3px 10px;
+    background: #ffffff;
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.add-icon {
+    background-image: url('/icons/plus-icon.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* html converted from markdown */
+
+.markdown pre {
+    background-color: black;
+    padding: 10px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    border-radius: 6px;
+    overflow-x: scroll;
+}
+
+.markdown code {
+    font-size: 15px;
+    font-weight: 800;
+    padding: 5px;
+    color: #ffffff;
+}
+
+.markdown pre code {
+    font-size: inherit;
+    font-weight: inherit;
+    padding: 0;
+}
+
+
+.markdown h3 {
+    font-size: 1.25em;
+    line-height: 1.6;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.markdown ol {
+    counter-reset: list-number;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.markdown ol>li {
+    counter-increment: list-number;
+    display: block;
+    margin-bottom: 0;
+    margin-top: 0;
+    min-height: 28px;
+}
+
+.markdown ol>li:before {
+    color: rgba(142,142,160,var(--tw-text-opacity));
+    content: counters(list-number,".") ".";
+    font-variant-numeric: tabular-nums;
+    padding-right: 0.5rem;
+    position: absolute;
+    transform: matrix(1, 0, 0, 1, -21.5, 0);
+}

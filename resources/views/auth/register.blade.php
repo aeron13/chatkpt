@@ -1,7 +1,7 @@
 <x-guest-layout>
-<div class="w-full h-screen flex justify-center items-center">
-    <x-form-box :title="'Register'">
-        <form method="POST" action="{{ route('register') }}" class="mt-[56px] mb-[67px] mx-[30px]">
+<div class="w-full h-screen flex justify-center lg:items-center pt-[173px] lg:pt-0">
+    <x-form-box :title="'Register'" class="">
+        <form method="POST" action="{{ route('register') }}" class="mt-[56px] mb-[83px] lg:mb-[67px] lg:mx-[30px]">
             @csrf
 
             <!-- Name -->
@@ -48,7 +48,7 @@
                     {{ __('Already registered?') }}
                 </a>
             </div>
-            <x-primary-button class="mt-7">
+            <x-primary-button class="mt-[51px] lg:mt-7">
             {{ __('Register') }}
             </x-primary-button>
         </form>

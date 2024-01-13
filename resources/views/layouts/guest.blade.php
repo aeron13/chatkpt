@@ -16,21 +16,30 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="bg-dark">
-            <header class="fixed w-full">
-                <div class="relative mt-[26px] mx-[35px] rounded-[10px] border-[#767676] border-[0.5px] shadow-glass-2">
-                    <!-- <div class="bg-dark h-[78px] absolute z-0 top-[1px] left-[1px] rounded-[9px]" style="width: calc(100% - 2px)"></div> -->
-                    <div class="relative flex justify-between items-center rounded-[10px] px-[26px] pt-[18px] pb-[21px] bg-glass-2 backdrop-blur-md z-1">
-                        <a href="/">
-                            <h5 class="font-special text-light text-[26px]">ChatKPT</h5>
-                        </a>
-                        <nav class="flex font-light text-light text-xl font-sans h-full items-center">
-                            <a href="{{ route('login') }}" class="mr-6">Log in</a>
-                            <a href="{{ route('register') }}" class="">Register</a>
-                        </nav>
-                    </div>
+            <x-header>
+                <div class="lg:hidden">
+                    <x-dropdown :align="'right'" width="140">
+                        <x-slot name="trigger">
+                                <div class="text-light">Start</div>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Log in') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Register') }}
+                            </x-dropdown-link>
+
+                        </x-slot>
+                    </x-dropdown>
                 </div>
-            </header>
-            <main class="min-h-screen w-full bg-contain bg-no-repeat" style="background-image: url({{ asset('img/bg-welcome.svg') }})">
+                <nav class="hidden lg:block font-light text-light text-xl font-sans h-full items-center">
+                    <a href="{{ route('login') }}" class="mr-6">Log in</a>
+                    <a href="{{ route('register') }}" class="">Register</a>
+                </nav>
+            </x-header>
+            <main class="bg-welcome min-h-screen w-full bg-no-repeat">
                 {{ $slot }}
             </main>
     </body>

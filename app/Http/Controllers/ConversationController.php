@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ConversationStoreRequest;
 use App\Models\Conversation;
 use App\Models\Message;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 
 class ConversationController extends Controller
@@ -19,10 +21,7 @@ class ConversationController extends Controller
      */
     public function index() 
     {
-        // $conversations = Conversation::where('author_id', Auth::id())->get();
-        // return response()->json(['conversations' => $conversations]);
-        
-        return new ConversationCollection(Conversation::where('author_id', Auth::id())->get());
+        return new ConversationCollection(Conversation::where('author_id', Auth::id())->orderBy('create_time', 'desc')->get());
     }
     
     /**
@@ -32,8 +31,6 @@ class ConversationController extends Controller
     {
 
         $conversationsData = json_decode($request->input('conversations'));
-
-        // Log::channel('single')->debug('Conversations:', ['data' => $conversationsData[0]]);
 
         foreach ($conversationsData as $conversationData) {
 
@@ -90,6 +87,7 @@ class ConversationController extends Controller
     public function show(Request $request) 
     {
         $id = request('id');
+
         return new ConversationResource(Conversation::where([['author_id', Auth::id()],['id', $id]])->first());
     }
 
@@ -111,12 +109,6 @@ class ConversationController extends Controller
 
     public function delete(Request $request) 
     {
-        // $id = request('id');
-        // $cat_id = request('input')->category;
-        // $conversation = Conversation::where([['author_id', Auth::id()],['id', $id]])->update(['categories' => $cat_id]);;
-        // $conversation->save();
-
-        // return Redirect::route('dashboard');
         return response()->json(['message' => 'Conv deleted']);
     }
 }

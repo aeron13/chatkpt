@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div x-data="dashboard">
+    <div x-data="category">
         <div class="mx-[20px] lg:mx-[35px] grid lg:grid-cols-12 pt-[162px]">
             @include('partials/sidebar')
             @include('partials/conversations-list')
@@ -11,8 +11,9 @@
 
     document.addEventListener('alpine:init', () => {
 
-        Alpine.data('dashboard', () => ({
+        Alpine.data('category', () => ({
             async init() {
+                this.$store.api.setQueryId()
                 await this.$store.api.setConversations()
                 this.$store.api.loading = false
             }

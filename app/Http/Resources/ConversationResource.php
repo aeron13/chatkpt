@@ -11,7 +11,7 @@ use App\Models\Message;
 class ConversationResource extends JsonResource
 {
     private function getCategoryData() {
-        if (!$this->categories) {
+        if ( empty($this->categories) ) {
             return null;
         }
 

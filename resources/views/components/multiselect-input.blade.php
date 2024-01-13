@@ -3,17 +3,22 @@
         <template x-if="selectedCategories.length < 1">
             <p class="ml-3 py-1.5">Select category</p>
         </template>
-        <template x-for="cat in selectCategories.filter(cat => cat.selected)">
-            <div class="relative w-fit">
-                <div class="absolute w-full h-full z-0 opacity-30 rounded-[7px]" x-bind:style="`background-color: ${cat.color}`"></div>
-                <div class="pl-2 pr-[5px] py-1.5 justify-start items-center gap-[5px] inline-flex">
-                    <p class="text-black font-bold font-special" x-text="cat.name"></p>
-                    <div class="w-[15px] h-[15px] relative" @click="$dispatch('toggle-category', [cat.id])" style="background-image: url({{ asset('icons/remove-icon.svg') }})"></div>
-                </div>
+        <template x-for="cat in selectCategories.filter(obj => !obj.parent_id)">
+            <div class="flex gap-1">
+                <template x-if="cat.selected">
+                    <x-tag name="cat.name" color="cat.color" removeAction="$dispatch('toggle-category', [cat.id])" /> 
+                </template>
+                <template x-if="cat.children">
+                    <template x-for="child in cat.children">
+                        <template x-if="child.selected">
+                            <x-tag name="child.name" color="child.color" removeAction="$dispatch('toggle-category', [cat.id, child.id])" /> 
+                        </template>
+                    </template>
+                </template>
             </div>
         </template>
     </div>
-    <div x-show="showDropdown" class="absolute mt-[5px] z-10 w-[215px] max-h-[253px] p-[9px] bg-white rounded-[10px] shadow">
+    <div x-show="showDropdown" class="absolute mt-[5px] z-10 w-[215px] max-h-[253px] p-[9px] bg-white rounded-[10px] shadow" @click.outside="showDropdown = false" @close.stop="showDropdown = false">
         <ul>
             <template x-for="cat in selectCategories.filter(obj => !obj.parent_id )" x-bind:key="cat.id">
                 <li class="mb-2 w-full">
@@ -40,12 +45,9 @@
 <script>
 
     document.addEventListener('alpine:init', () => {
-        console.log('ini')
         
         Alpine.data('multiselect', () => ({
             showDropdown: false,
-
-
         }))
     })
 

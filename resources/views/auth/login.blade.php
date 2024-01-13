@@ -2,10 +2,10 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     
-    <div class="w-full h-screen flex justify-center items-center">
-        <x-form-box :title="'Log in'">
+    <div class="w-full h-screen flex justify-center lg:items-center pt-[173px] lg:pt-0">
+        <x-form-box :title="'Log in'" class="">
 
-            <form method="POST" action="{{ route('login') }}" class="mt-[56px] mb-[67px] mx-[30px]">
+            <form method="POST" action="{{ route('login') }}" class="mt-[56px] mb-[83px] lg:mb-[67px] lg:mx-[30px]">
                 @csrf
                 <!-- Email Address -->
                 <x-form-block>
@@ -25,7 +25,7 @@
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </x-form-block>
 
-                <div class="flex flex-wrap justify-between items-baseline mt-4">
+                <div class="flex flex-col lg:flex-row flex-wrap justify-between items-baseline mt-4">
                     <!-- Remember Me -->
                     <div class="block">
                         <label for="remember_me" class="inline-flex items-center">
@@ -35,13 +35,13 @@
                     </div>
 
                     @if (Route::has('password.request'))
-                        <a class="underline text-sm text-light" href="{{ route('password.request') }}">
+                        <a class="mt-6 lg:mt-0 underline text-sm text-light" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
                     @endif
                 </div>
 
-                <x-primary-button class="mt-7">
+                <x-primary-button class="mt-[51px] lg:mt-7">
                     {{ __('Log in') }}
                 </x-primary-button>
             </form>
