@@ -39,6 +39,7 @@
                 this.id = e.target.getAttribute('conv')
                 this.showModal = true
                 this.$dispatch('update-id', this.id)
+                this.$store.api.categoryList.length == 0 && this.$dispatch('toggle-create-form', true)
             },
 
             closeModal() {

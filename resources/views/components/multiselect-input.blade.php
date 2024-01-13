@@ -1,7 +1,7 @@
 <div class="relative w-full" x-data="multiselect">
-    <div @click="showDropdown = !showDropdown" class="flex gap-1 w-full text-lg font-bold px-[5px] py-[7px] bg-white rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[3px]">
+    <div @click="showDropdown = !showDropdown" class="h-[54px] flex items-center gap-1 w-full font-bold px-[5px] py-[7px] bg-white rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[3px] cursor-pointer overflow-x-scroll">
         <template x-if="selectedCategories.length < 1">
-            <p class="ml-3 py-1.5">Select category</p>
+            <p x-bind:class="`ml-3 text-lg py-1.5 ${ showDropdown && 'opacity-10' }`">Select category</p>
         </template>
         <template x-for="cat in selectCategories.filter(obj => !obj.parent_id)">
             <div class="flex gap-1">
@@ -18,7 +18,7 @@
             </div>
         </template>
     </div>
-    <div x-show="showDropdown" class="absolute mt-[5px] z-10 w-[215px] max-h-[253px] p-[9px] bg-white rounded-[10px] shadow" @click.outside="showDropdown = false" @close.stop="showDropdown = false">
+    <div x-show="showDropdown" class="absolute mt-[5px] z-10 w-[215px] max-h-[253px] p-[9px] pb-[2px] bg-white rounded-[10px] shadow overflow-y-scroll" @click.outside="showDropdown = false" @close.stop="showDropdown = false">
         <ul>
             <template x-for="cat in selectCategories.filter(obj => !obj.parent_id )" x-bind:key="cat.id">
                 <li class="mb-2 w-full">

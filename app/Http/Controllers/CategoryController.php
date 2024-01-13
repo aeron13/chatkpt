@@ -51,6 +51,6 @@ class CategoryController extends Controller
         $category->author_id = Auth::id();
         $category->save();
 
-        return response()->json(['message' => 'Category saved', 'category' => new CategoryResource($category)]);
+        return response()->json(['message' => 'Category saved', 'id' => $category->id]);
     }
 }

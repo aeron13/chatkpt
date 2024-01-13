@@ -39,6 +39,7 @@
 
 <script>
     document.addEventListener('alpine:init', () => {
+        
         Alpine.data('createCategoryForm', () => ({
             colors: [
                 {'hue': 'Green', 'hex': '#10D9A3'},
@@ -83,7 +84,7 @@
                         if (data.errors) {
                             this.error = data.message
                         } else {
-                            this.handlePositiveSubmit()
+                            this.handlePositiveSubmit(data.id)
                         }
                     })
                     .catch((error) => {
@@ -95,10 +96,12 @@
                 }
             },
 
-            async handlePositiveSubmit() {
+            async handlePositiveSubmit(category_id) {
                 await this.$store.api.setCategories()
                 this.category.name = null
                 this.showCreateForm = false
+                this.$dispatch('update-data')
+                this.$dispatch('toggle-category', [category_id])
             }
             
         }))
