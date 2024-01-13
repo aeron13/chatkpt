@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>ChatKPT</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,11 +15,17 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-dark">
+    <body class="bg-dark relative">
         @include('layouts.navigation')
     
-        <main class="min-h-screen w-full">
+        <main class="w-full min-h-screen">
             {{ $slot }}
         </main>
+        <footer class="absolute w-full flex flex-col-reverse lg:flex-row justify-between text-light font-sans text-[12px] opacity-70 px-[20px] lg:px-[35px] pb-5 bottom-0">
+            <p>2024</p>
+            <p>Coded by: 
+                <a href="https://margheritamagatti.it" target="_blank">Margherita Magatti</a>
+            </p>
+        </footer>
     </body>
 </html>

@@ -11,22 +11,30 @@ use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {
+    public function welcome(Request $request) {
+
+        if($request->user()) {
+            return Redirect::route('dashboard');
+        }
+
+        return view('welcome');
+    }
     
-    public function load(Request $request) {
+    public function load() {
         return view('load');
     }
 
 
-    public function dashboard(Request $request) {
+    public function dashboard() {
         return view('dashboard');
     }
 
 
-    public function conversation(Request $request) {
+    public function conversation() {
         return view('conversation');
     }
 
-    public function category(Request $request) {
+    public function category() {
         return view('category');
     }
 

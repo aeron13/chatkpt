@@ -17,6 +17,12 @@ class ConversationResource extends JsonResource
 
         return Category::whereIn('id', $this->categories)->get();
     }
+
+    private function formatDate($date) {
+        
+        $timestamp = strtotime($date);
+        return date('d M Y', $timestamp);
+    }
     
     /**
      * Transform the resource into an array.
@@ -30,7 +36,7 @@ class ConversationResource extends JsonResource
             'title' => $this->title,
             'url' => route('conversation', $this->id),
             'current_node' => $this->current_node,
-            'create_time' => $this->create_time,
+            'create_time' => $this->formatDate($this->create_time),
             'author' => Auth::user()->name,
             'messages' => Message::where([['conversation_id', $this->id], ['author','!=', 'system']])->get(),
             'categories' => $this->getCategoryData()

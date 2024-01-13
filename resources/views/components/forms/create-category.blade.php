@@ -98,10 +98,14 @@
 
             async handlePositiveSubmit(category_id) {
                 await this.$store.api.setCategories()
+                
+                this.$dispatch('update-data')
+                if (this.category.parent_id) this.$dispatch('toggle-category', [this.category.parent_id, category_id])
+                else this.$dispatch('toggle-category', [category_id])
+
+                this.category.name = null
                 this.category.name = null
                 this.showCreateForm = false
-                this.$dispatch('update-data')
-                this.$dispatch('toggle-category', [category_id])
             }
             
         }))

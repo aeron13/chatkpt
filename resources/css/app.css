@@ -27,6 +27,7 @@ option[value=''] {
     }
 }
 
+/* mobile menu */
 nav.dashboard-nav .dropdown {
     position: unset;
 }
@@ -34,8 +35,9 @@ nav.dashboard-nav .dropdown {
 nav.dashboard-nav .dropdown-content {
     position: relative;
     width: calc(100vw - 26px);
+    height: calc(100vh - 80px);
     right: -4px;
-    padding: 60px 40px 60px;
+    padding: 30px 30px 60px;
 }
 
 nav.dashboard-nav .categories-list li {
@@ -140,4 +142,8 @@ input[type='file']::-webkit-file-upload-button {
     padding-right: 0.5rem;
     position: absolute;
     transform: matrix(1, 0, 0, 1, -21.5, 0);
+}
+
+.markdown hr {
+    margin: 20px 0;
 }

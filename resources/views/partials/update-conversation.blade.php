@@ -1,4 +1,4 @@
-<div class="w-fit h-fit" x-data="{ showCreateForm: false }" @toggle-create-form.window="showCreateForm = $event.detail" >
+<div class="w-full lg:w-fit h-fit" x-data="{ showCreateForm: false }" @toggle-create-form.window="showCreateForm = $event.detail" >
     <button class="block w-[17px] h-[17px] bg-contain bg-no-repeat ml-auto mb-3 mr-[20px] lg:mr-3 transform hover:scale-[1.1] transition-transform" @click="closeModal" style="background-image: url({{ asset('icons/close-icon.svg') }})"></button>
     <x-form-box :title="'Add category'" class="mx-0">
         <p class="font-sans text-light text-[15px] mt-[27px]">Add a category to:</p>
@@ -40,8 +40,6 @@ document.addEventListener('alpine:init', () => {
         updateData() {
 
             const conversation = this.$store.api.conversations.find(conv => conv.id == this.conversation_id );
-
-            console.log(conversation)
 
             if (conversation.categories) {
 

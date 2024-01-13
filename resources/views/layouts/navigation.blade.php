@@ -1,6 +1,6 @@
 <x-header>
     <nav class="lg:hidden dashboard-nav">
-        <x-dropdown :align="'right'">
+        <x-dropdown :align="'center'">
             <x-slot name="trigger">
                     <div class="text-light">Menu</div>
             </x-slot>
