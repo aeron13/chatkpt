@@ -21,10 +21,10 @@
         <main class="w-full min-h-screen">
             {{ $slot }}
         </main>
-        <footer class="absolute w-full flex flex-col-reverse lg:flex-row justify-between text-light font-sans text-[12px] opacity-70 px-[20px] lg:px-[35px] pb-5 bottom-0">
+        <footer class="absolute w-full text-light font-sans text-[12px] opacity-70 px-[20px] lg:px-[35px] pb-5 bottom-0">
             <p>2024</p>
             <p>Coded by: 
-                <a href="https://margheritamagatti.it" target="_blank">Margherita Magatti</a>
+                <a href="https://margheritamagatti.it" target="_blank">M. M.</a>
             </p>
         </footer>
     </body>

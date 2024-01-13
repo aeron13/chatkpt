@@ -1,4 +1,4 @@
-<div class="lg:col-start-4 lg:col-end-12 pb-[100px]"  x-data="hasModal" @close-modal.window="closeModal()" x-show="!$store.api.loading" x-transition.opacity >
+<div class="lg:col-start-4 lg:col-end-12 pb-[100px]"  x-data="hasModal" @close-modal.window="closeModal()" x-show="!$store.api.loading && $store.api.conversations.length > 0" x-transition.opacity >
     <h6 class="font-sans font-light text-lg text-light mb-[28px]" x-text="$store.api.category.name ?? 'Tutte le conversazioni' "></h6>
 
     <ul class="grid lg:grid-cols-2 gap-2 lg:gap-4">

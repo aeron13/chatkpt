@@ -1,6 +1,6 @@
 <x-form-box :title="'Load conversations.json'" :class="'2xl:min-w-[600px]'">
 
-    <form x-data="form" @submit.prevent="processJson" class="mt-[56px] mb-[67px] mx-[30px]">
+    <form x-data="form" @submit.prevent="processJson" class="mt-[56px] mb-[67px] lg:mx-[30px]">
         @csrf
         @method('post')
 
