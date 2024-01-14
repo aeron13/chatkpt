@@ -160,13 +160,3 @@ input[type='file']::-webkit-file-upload-button {
 .markdown hr {
     margin: 20px 0;
 }
-
-.conversation-container {
-    overflow-y: scroll;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-}
-.conversation-container::-webkit-scrollbar { /* WebKit */
-    width: 0;
-    height: 0;
-}

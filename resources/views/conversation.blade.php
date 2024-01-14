@@ -3,8 +3,8 @@
         <div class="lg:pt-[162px]">
             @include('partials/sidebar')
         </div>
-        <div x-ref="container" class="conversation-container overflow-y-scroll col-span-12 lg:col-start-4 grid grid-cols-8 pb-[100px] lg:pt-[162px] lg:h-screen" x-data="conversation" >
-            <div class="col-span-12 lg:col-span-7">
+        <div class="col-span-12 lg:col-start-4 pb-[100px] lg:pt-[162px]" x-data="conversation" >
+
                 <div class="mx-2 mb-[90px] lg:mb-[50px] transform lg:translate-y-[-10px]">
                     <div class="flex flex-col-reverse lg:flex-row lg:justify-between items-baseline">
                         <h1 class="font-special text-[32px] leading-tight lg:text-[40px] text-light" x-text="post.title"></h1>
@@ -15,7 +15,7 @@
                             <p>In: 
                                 <template x-for="(cat, index) in post.categories">
                                     <span class="font-special font-bold">
-                                        <span x-text="cat.name"></span>
+                                        <a x-bind:href="`/category/${cat.id}`" x-text="cat.name"></span>
                                         <span x-show="post.categories.length > 1 && index != post.categories.length -1">,</span> 
                                     </span>
                                 </template>
@@ -42,10 +42,7 @@
                         </div>
                     </template>
                 </div>
-            </div>
-            <div id="scrollbar" x-ref="scrollbar" class="hidden lg:block fixed w-[4px] rounded bg-[#252525] right-[35px]" style="height: calc(100vh - 170px)">
-                <div x-ref="indicator" class="scroll-indicator h-[60px] w-full bg-[#A9A9A9] rounded absolute"></div>
-            </div>
+
         </div>
     </div>
 </x-app-layout>
@@ -64,14 +61,6 @@
                 this.post = await this.$store.api.getConversation()
                 this.$store.api.loading = false
 
-                const container = this.$refs.container;
-                const indicator = this.$refs.indicator;
-                
-                container.addEventListener('scroll', () => {
-                    const scrollY = container.scrollTop
-                    const top = container.scrollTop / (container.scrollHeight - container.clientHeight) * (this.$refs.scrollbar.clientHeight - indicator.clientHeight);
-                    indicator.style.top = top + 'px'
-                })
             }
         }))
     })
