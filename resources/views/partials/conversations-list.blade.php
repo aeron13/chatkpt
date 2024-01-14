@@ -2,7 +2,7 @@
     <h6 class="font-sans font-light text-lg text-light" x-text="$store.api.category.name ?? 'All conversations' "></h6>
     <template x-for="(timespan, index) in $store.api.orderedConversations" :key="index">
         <div x-show="timespan.posts.length > 0" class="mt-[28px]">
-            <h6 class="font-sans lg:font-light text-sm lg:text-lg text-light mb-[15px]" x-text="timespan.timespan"></h6>
+            <h6 class="font-sans lg:font-light text-sm lg:text-base text-light mb-[15px]" x-text="timespan.timespan"></h6>
             <ul class="grid lg:grid-cols-2 gap-2 lg:gap-4 mb-[40px]">
                 <template x-for="post in timespan.posts" :key="post.id">
                     <a x-bind:href="post.url">
