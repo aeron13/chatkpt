@@ -4,7 +4,7 @@
             @include('partials/sidebar')
             @include('partials/conversations-list')
             <template x-if="empty && !$store.api.loading">
-                <div class="col-start-1 col-end-12 text-light mx-[10px] flex justify-center">
+                <div class="col-start-1 col-end-12 dark:text-light mx-[10px] flex justify-center">
                     <div class="w-fit lg:pt-[30px]">
                         <p class="mb-20 lg:mb-8 text-center">Welcome!</p>
                         <p class="text-xl mb-4">How to get going</p>

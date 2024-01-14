@@ -1,13 +1,13 @@
 <header class="fixed w-full z-[9]">
-    <div class="relative mt-[12px] lg:mt-[26px] mx-[14px] lg:mx-[35px] rounded-[10px] border-[#767676] border-[0.5px] shadow lg:shadow-glass-2">
-        <div class="relative grid grid-cols-2 lg:grid-cols-12 rounded-[10px] bg-glass-2 backdrop-blur-md z-1">
+    <div class="relative mt-[12px] lg:mt-[26px] mx-[14px] lg:mx-[35px] rounded-[10px] border-[#C9C9C9] dark:border-[#767676] border-[0.5px] dark:shadow dark:lg:shadow-glass-2">
+        <div class="relative grid grid-cols-2 lg:grid-cols-12 rounded-[10px] bg-lightglass-2 dark:bg-glass-2 backdrop-blur-md z-1">
             <div class="lg:col-span-3 px-[17px] py-[13px] lg:px-[26px] lg:pt-[18px] lg:pb-[21px]">
                 <x-application-logo/>
             </div>
             <nav class="lg:hidden dashboard-nav flex items-center justify-end">
                 <x-dropdown :align="'center'">
                     <x-slot name="trigger">
-                            <div class="text-light">Menu</div>
+                            <div class="dark:text-light">Menu</div>
                     </x-slot>
 
                     <x-slot name="content">
@@ -42,7 +42,7 @@
                     </x-slot>
                 </x-dropdown>
             </nav>
-            <nav class="hidden lg:flex col-span-9 justify-between font-light text-light text-[16px] font-sans h-full items-center pr-[26px]">
+            <nav class="hidden lg:flex col-span-9 justify-between font-light dark:text-light text-[16px] font-sans h-full items-center pr-[26px]">
                 <div class="flex">
                     <a href="{{ route('dashboard') }}" class="mr-10">Dashboard</a>
                 </div>
@@ -51,7 +51,7 @@
                     <div class="flex items-center">
                         <x-dropdown :align="'right'" width="192">
                             <x-slot name="trigger">
-                                    <span class="w-[13px] h-[13px] rounded-full bg-[#E5E8DB] mr-2" ></span>
+                                    <span class="w-[13px] h-[13px] rounded-full bg-dark dark:bg-[#E5E8DB] mr-2" ></span>
                                     <div>{{ Auth::user()->name }}</div>
                             </x-slot>
 

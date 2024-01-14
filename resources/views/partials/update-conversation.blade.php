@@ -1,15 +1,15 @@
 <div class="w-full lg:w-fit h-fit" x-data="{ showCreateForm: false }" @toggle-create-form.window="showCreateForm = $event.detail" >
     <button class="block w-[17px] h-[17px] bg-contain bg-no-repeat ml-auto mb-3 mr-[20px] lg:mr-3 transform hover:scale-[1.1] transition-transform" @click="closeModal" style="background-image: url({{ asset('icons/close-icon.svg') }})"></button>
     <x-form-box :title="'Add category'" class="mx-0">
-        <p class="font-sans text-light text-[15px] mt-[36px]">Add a category to:</p>
-        <p class="font-special text-light text-xl lg:text-2xl" x-text="title"></p>
+        <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
+        <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="title"></p>
         <template x-if="$store.api.categoryList.length > 0">
             <div class="my-[45px]" >
                 <x-forms.add-category /> 
             </div>
         </template>
         <div x-show="showCreateForm" class="my-[45px]">
-            <p class="text-light font-sans font-light text-base mt-5 flex items-center">
+            <p class="dark:text-light font-sans font-light text-base mt-5 flex items-center">
                 <span>Create a category</span>
                 <span x-show="$store.api.categoryList.length > 0" @click="showCreateForm = false" class="ml-[15px] inline-block w-[12px] h-[12px] bg-contain bg-no-repeat cursor-pointer transform hover:scale-[1.1]" style="background-image: url({{ asset('icons/close-icon.svg') }})"></span>
             </p>

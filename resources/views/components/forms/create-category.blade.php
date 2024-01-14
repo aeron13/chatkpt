@@ -11,7 +11,7 @@
             </x-form-block>   
         </div> 
         <x-form-block class="flex flex-col gap-1">
-            <label for="color" class="font-bold text-sm text-light">Color</label>
+            <label for="color" class="font-bold text-sm dark:text-light">Color</label>
             <select id="color" x-model="category.color" name="color" class="w-full text-lg font-sm px-[8px] py-[8px] text-sm focus:outline-none rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[3px] placeholder:font-light">
                 <template x-for="colorEl in colors">
                     <option x-bind:value="colorEl.hex" x-text="colorEl.hue"></option>
@@ -19,7 +19,7 @@
             </select>
         </x-form-block>
         <x-form-block class="flex flex-col gap-1">
-            <label for="parent_id" class="font-bold text-sm text-light">Parent</label>
+            <label for="parent_id" class="font-bold text-sm dark:text-light">Parent</label>
             <select id="parent_id" x-model="category.parent_id" name="parent_id" class="w-full text-lg font-sm px-[8px] py-[8px] text-sm focus:outline-none rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[3px] placeholder:font-light">
                 <option value="">Select</option>
                 <template x-for="cat in $store.api.categoryList">

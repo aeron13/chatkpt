@@ -146,10 +146,11 @@ input[type='file']::-webkit-file-upload-button {
     margin-bottom: 0;
     margin-top: 0;
     min-height: 28px;
+    margin: 0.5em 0 0.5em 1.2em;
 }
 
 .markdown ol>li:before {
-    color: rgba(142,142,160,var(--tw-text-opacity));
+    color: rgb(142,142,160);
     content: counters(list-number,".") ".";
     font-variant-numeric: tabular-nums;
     padding-right: 0.5rem;
@@ -159,4 +160,14 @@ input[type='file']::-webkit-file-upload-button {
 
 .markdown hr {
     margin: 20px 0;
+}
+
+html:not(.dark) .markdown code {
+    color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+    .markdown code {
+        color: #fff;
+    }
 }

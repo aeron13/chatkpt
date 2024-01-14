@@ -30,12 +30,12 @@
                     <div class="block">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox" class="" name="remember">
-                            <span class="ms-2 text-sm text-light">{{ __('Remember me') }}</span>
+                            <span class="ms-2 text-sm dark:text-light">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 
                     @if (Route::has('password.request'))
-                        <a class="mt-6 lg:mt-0 underline text-sm text-light" href="{{ route('password.request') }}">
+                        <a class="mt-6 lg:mt-0 underline text-sm dark:text-light" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
                     @endif

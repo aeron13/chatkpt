@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,13 +15,13 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-dark relative">
+    <body class="bg-light-gradient dark:bg-none dark:bg-dark relative">
         @include('layouts.navigation')
     
         <main class="w-full min-h-screen">
             {{ $slot }}
         </main>
-        <footer class="absolute w-full text-light font-sans text-[12px] opacity-70 px-[20px] lg:px-[35px] pb-5 bottom-0">
+        <footer class="absolute w-full dark:text-light font-sans text-[12px] opacity-70 px-[20px] lg:px-[35px] pb-5 bottom-0">
             <p>2024</p>
             <p>Coded by: 
                 <a href="https://margheritamagatti.it" target="_blank">M. M.</a>

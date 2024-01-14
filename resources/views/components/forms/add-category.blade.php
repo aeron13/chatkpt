@@ -11,9 +11,9 @@
         <x-multiselect-input />
     </x-form-block>
 
-    <div x-show="!showCreateForm" class="text-light opacity-90 mt-[22px] mb-[45px]">
+    <div x-show="!showCreateForm" class="dark:text-light opacity-90 mt-[22px] mb-[45px]">
         <p class="text-[15px]">Or:</p>
-        <p class="font-semibold border-b border-light mt-[5px] cursor-pointer w-fit" @click="showCreateForm = true">Create new category</p>
+        <p class="font-semibold border-b dark:border-light mt-[5px] cursor-pointer w-fit" @click="showCreateForm = true">Create new category</p>
     </div>
 
     <div x-bind:class="`mt-4 ${ showCreateForm && 'hidden'  }`">

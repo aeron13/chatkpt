@@ -15,12 +15,12 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-dark">
+    <body class="bg-light-gradient dark:bg-dark">
             <x-header>
                 <div class="lg:hidden">
                     <x-dropdown :align="'right'" width="140">
                         <x-slot name="trigger">
-                                <div class="text-light">Start</div>
+                                <div class="dark:text-light">Start</div>
                         </x-slot>
 
                         <x-slot name="content">
@@ -34,7 +34,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
-                <nav class="hidden lg:block font-light text-light text-xl font-sans h-full items-center">
+                <nav class="hidden lg:block font-light dark:text-light text-xl font-sans h-full items-center">
                     <a href="{{ route('login') }}" class="mr-6">Log in</a>
                     <a href="{{ route('register') }}" class="">Register</a>
                 </nav>
