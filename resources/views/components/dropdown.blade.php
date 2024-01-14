@@ -21,7 +21,7 @@ if ($width) {
 
 <div class="relative dropdown" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
-        <button class="inline-flex items-center px-3 py-2 text-sm leading-4 text-[16px] rounded-md border border-light" x-bind:class="{ 'border-transparent': open }">
+        <button x-bind:class="`inline-flex items-center px-3 py-2 text-sm leading-4 text-[16px] rounded-md ${ open && 'lg:border-transparent' }`">
             {{ $trigger }}
             <div class="ms-1">
                 <svg class="fill-light h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
