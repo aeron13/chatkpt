@@ -33,8 +33,10 @@ document.addEventListener('alpine:init', () => {
         error: '',
 
         updateId(conv_id) {
-            this.conversation_id = conv_id;
-            this.updateData()
+            if (conv_id != this.conversation_id) {
+                this.conversation_id = conv_id;
+                this.updateData()
+            }
         },
 
         updateData() {
@@ -65,6 +67,12 @@ document.addEventListener('alpine:init', () => {
                 this.selectCategories = this.$store.api.categoryOrderedList
             }
 
+        },
+
+        resetData() {
+            this.selectCategories = []
+            this.selectedCategories = []
+            this.conversation_id = null
         },
 
         toggleCategory(ids) {

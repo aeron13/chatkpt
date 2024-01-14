@@ -104,7 +104,7 @@
                 else this.$dispatch('toggle-category', [category_id])
 
                 this.category.name = null
-                this.category.name = null
+                this.category.parent_id = null
                 this.showCreateForm = false
             }
             

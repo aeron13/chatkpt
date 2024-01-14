@@ -1,6 +1,6 @@
 
 
-<form x-data="addCategoryForm" @submit.prevent="handleSubmit" x-bind:conv="id" @update-id.window="updateId($event.detail)" @update-data.window="updateData()" @toggle-category.window="toggleCategory($event.detail)">
+<form x-data="addCategoryForm" @submit.prevent="handleSubmit" x-bind:conv="id" @update-id.window="updateId($event.detail)" @update-data.window="updateData()" @reset-data.window="resetData()" @toggle-category.window="toggleCategory($event.detail)">
 
     <x-form-block x-bind:class="`mt-4 flex gap-3 items-center ${ showCreateForm && 'pointer-events-none opacity-20' }`">
         <select id="category" name="category" multiple x-model="selectedCategories" class="hidden w-full text-lg font-bold px-[16px] py-[12px] focus:outline-none rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[3px] placeholder:font-light">

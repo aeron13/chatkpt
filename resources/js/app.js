@@ -10,12 +10,26 @@ Alpine.store('api', {
     categoryList: [],
     categoryOrderedList: [],
     conversations: [],
+    orderedConversations: [],
     category: [],
     queryId: null,
 
     setQueryId() {
         let queryString = window.location.href
         this.queryId = queryString.substring(queryString.lastIndexOf('/') + 1)
+    },
+
+    initOrderedConversations() {
+        return [
+            { timespan: 'Today', posts: [] },
+            { timespan: 'Yesterday', posts: [] },
+            { timespan: 'This week', posts: [] },
+            { timespan: 'This month', posts: [] },
+            { timespan: 'Last month', posts: [] },
+            { timespan: 'This year', posts: [] },
+            { timespan: 'Last year', posts: [] },
+            { timespan: 'Older', posts: [] },
+        ]
     },
  
     async getConversations() {
@@ -95,6 +109,56 @@ Alpine.store('api', {
         } else {
             this.conversations = await this.getConversations()
         }
+        this.orderConversations(this.conversations)
+    },
+
+    orderConversations(conversations) {
+        this.orderedConversations = this.initOrderedConversations()
+
+        const today = new Date();
+        conversations.forEach(post => {
+
+            const date = new Date(post.create_time);
+
+            if (today.getFullYear() === date.getFullYear()) {
+                if (today.getMonth() === date.getMonth()) {
+
+                    if (today.getDate() === date.getDate()) {
+                        //today
+                        this.orderedConversations[0].posts.push(post)
+
+                    } else if (today.getDate() === date.getDate() + 1) {
+                        // yesterday
+                        this.orderedConversations[1].posts.push(post)
+
+                    } else if (today.getDate() - date.getDate() < 7 ) {
+                        // this week
+                        this.orderedConversations[2].posts.push(post)
+                    }
+                    else {
+                        // this month
+                        this.orderedConversations[3].posts.push(post)
+                    }
+
+                } else if(today.getMonth() === date.getMonth() + 1) {
+                    // last month
+                    this.orderedConversations[4].posts.push(post)
+                }
+                else {
+                    //this year
+                    this.orderedConversations[5].posts.push(post)
+                }
+
+            } else if ( today.getFullYear() === date.getFullYear() + 1 ) {
+                //last year
+                this.orderedConversations[6].posts.push(post)
+
+            } else {
+                this.orderedConversations[7].posts.push(post)
+            }
+
+        })
+
     },
 
 })
