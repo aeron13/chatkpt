@@ -53,4 +53,35 @@ class CategoryController extends Controller
 
         return response()->json(['message' => 'Category saved', 'id' => $category->id]);
     }
+
+    /**
+     * Update a category
+     */
+    public function update(CategoryStoreRequest $request) 
+    {
+        $catId = request('id');
+
+        $categoryData = $request->validated();
+        
+        $category = Category::where('id', $catId)
+            ->update([
+                'name' => $categoryData['name'],
+                'color' => $categoryData['color'],
+                'parent_id' => $categoryData['parent_id']
+            ]);
+
+        return response()->json(['message' => 'Category updated', 'id' => $category]) ;
+    }
+
+    /**
+     * Delete a category
+     */
+    public function delete(Request $request) 
+    {
+        $catId = request('id');
+        
+        $category = Category::where('id', $catId)->delete();
+
+        return response()->json(['message' => 'Category deleted', 'id' => $category]) ;
+    }
 }

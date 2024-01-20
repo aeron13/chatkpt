@@ -1,5 +1,4 @@
-<div class="lg:col-start-4 lg:col-end-12 pb-[100px]"  x-data="hasModal" @close-modal.window="closeModal()" x-show="!$store.api.loading && $store.api.conversations.length > 0" x-transition.opacity >
-    <h6 class="font-sans font-light text-lg dark:text-light" x-text="$store.api.category.name ?? 'All conversations' "></h6>
+<div x-data="hasModal" @close-modal.window="closeModal()" x-show="!$store.api.loading && $store.api.conversations.length > 0" x-transition.opacity >
     <template x-for="(timespan, index) in $store.api.orderedConversations" :key="index">
         <div x-show="timespan.posts.length > 0" class="mt-[28px]">
             <h6 class="font-sans lg:font-light text-sm lg:text-base dark:text-light mb-[15px]" x-text="timespan.timespan"></h6>
@@ -27,6 +26,7 @@
         @include('partials/update-conversation')
     </div>
 </div>
+
 
 <script type="text/javascript">
 

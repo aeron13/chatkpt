@@ -10,7 +10,19 @@
                         <h1 class="font-special text-[32px] leading-tight lg:text-[40px] dark:text-light" x-text="post.title"></h1>
                         <div class="flex flex-col items-end">
                             <p x-text="post.create_time" class="font-sans dark:text-light text-sm text-right"></p>
-                            <x-conversation-menu />
+                            <x-dropdown :align="'right'" width="140" showArrow="false">
+                                <x-slot name="trigger">
+                                    <!-- <span class="text-white">edit</span> -->
+                                    <x-burger />
+                                </x-slot>
+                                <x-slot name="content">
+                                <div class="">
+                                    <x-dropdown-link>
+                                        <x-forms.delete-conversation />
+                                    </x-dropdown-link>
+                                </div>
+                                </x-slot>
+                            </x-dropdown>
                         </div>
                     </div>
                     <template x-if="post.categories">

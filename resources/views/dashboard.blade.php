@@ -2,7 +2,12 @@
     <div x-data="dashboard">
         <div class="mx-[20px] lg:mx-[35px] grid lg:grid-cols-12 pt-[162px]">
             @include('partials/sidebar')
-            @include('partials/conversations-list')
+            <div class="lg:col-start-4 lg:col-end-12 pb-[100px]" >
+                <div class="flex items-center gap-5 justify-between">
+                    <h6 class="font-sans font-light text-lg dark:text-light">All conversations</h6>
+                </div>
+                @include('partials/conversations-list')
+            </div>
             <template x-if="empty && !$store.api.loading">
                 <div class="col-start-1 col-end-12 dark:text-light mx-[10px] flex justify-center">
                     <div class="w-fit lg:pt-[30px]">
