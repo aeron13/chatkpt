@@ -22,10 +22,11 @@
             {{ $slot }}
         </main>
         <footer class="absolute w-full dark:text-light font-sans text-[12px] opacity-70 px-[20px] lg:px-[35px] pb-5 bottom-0">
-            <p>2024</p>
+            <p>ChatKPT</p>
             <p>Coded by: 
                 <a href="https://margheritamagatti.it" target="_blank">M. M.</a>
             </p>
         </footer>
+        <!-- <x-toggle-dark-mode /> -->
     </body>
 </html>

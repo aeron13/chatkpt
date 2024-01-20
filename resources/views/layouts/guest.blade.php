@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>ChatKPT</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-light-gradient dark:bg-dark">
+    <body class="bg-light-gradient dark:bg-none dark:bg-dark">
             <x-header>
                 <div class="lg:hidden">
                     <x-dropdown :align="'right'" width="140">
@@ -42,5 +42,6 @@
             <main class="bg-welcome min-h-screen w-full bg-no-repeat">
                 {{ $slot }}
             </main>
+            <!-- <x-toggle-dark-mode /> -->
     </body>
 </html>

@@ -15,7 +15,7 @@
                         </ol>
                         <div class="w-full  flex justify-center lg:justify-start">
                             <a href="/load">
-                                <button class="px-10 pt-[15px] pb-[17px] rounded-[30px] shadow border-2 border-white border-opacity-50 text-white text-xl font-bold font-sans leading-tight">Load conversations</button>
+                                <button class="px-10 pt-[15px] pb-[17px] rounded-[30px] shadow border-2 dark:border-white dark:border-opacity-50 dark:text-white text-xl font-bold font-sans leading-tight">Load conversations</button>
                             </a>
                         </div>
                     </div>
@@ -36,7 +36,6 @@
                 await this.$store.api.setConversations()
                 this.$store.api.loading = false
                 if (this.$store.api.conversations.length > 0) this.empty = false
-                console.log(this.empty)
             }
         }))
 
