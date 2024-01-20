@@ -18,11 +18,11 @@
                 </template>
             </select>
         </x-form-block>
-        <x-form-block class="flex flex-col gap-1">
+        <x-form-block class="flex flex-col gap-1" x-show="$store.api.categoryList.length > 0">
             <label for="parent_id" class="font-bold text-sm dark:text-light">Parent</label>
             <select id="parent_id" x-model="category.parent_id" name="parent_id" class="w-full text-lg font-sm px-[8px] py-[8px] text-sm focus:outline-none rounded-tl-[10px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[3px] placeholder:font-light">
                 <option value="">Select</option>
-                <template x-for="cat in $store.api.categoryList">
+                <template x-for="cat in $store.api.categoryList.filter(x => !x.parent_id)">
                     <option x-model="cat.id" x-text="cat.name"></option>
                 </template>
             </select>
@@ -97,6 +97,7 @@
             },
 
             async handlePositiveSubmit(category_id) {
+
                 await this.$store.api.setCategories()
                 
                 this.$dispatch('update-data')

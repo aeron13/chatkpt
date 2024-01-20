@@ -13,7 +13,7 @@
                                     <template x-for="cat in post.categories">
                                         <div class="w-[20px] h-[20px] lg:w-[32px] lg:h-[32px] origin-top-left rotate-[-4.45deg] rounded-[5px]  transform translate-x-[-10px]" x-bind:style="`background-color: ${cat.color}`"></div>
                                     </template>
-                                    <button @click="openModal" x-bind:conv="post.id" class="add-icon w-[23px] h-[23px] absolute right-0 bottom-0 transform hover:scale-[1.1] transition-transform" style="background-image: url({{ asset('icons/plus-icon.svg') }})"></button>
+                                    <button @click="$event.preventDefault(); openModal(post.title, post.id)" class="add-icon w-[23px] h-[23px] absolute right-0 bottom-0 transform hover:scale-[1.1] transition-transform" style="background-image: url({{ asset('icons/plus-icon.svg') }})"></button>
                                 </div>
                             </div>
                         </li>
@@ -37,10 +37,9 @@
             title: '',
             id: null,
 
-            openModal(e) {
-                e.preventDefault()
-                this.title = e.target.parentNode.parentNode.querySelector('p').innerText
-                this.id = e.target.getAttribute('conv')
+            openModal(post_title, post_id) {
+                this.title = post_title
+                this.id = post_id
                 this.showModal = true
                 this.$dispatch('update-id', this.id)
                 this.$store.api.categoryList.length == 0 && this.$dispatch('toggle-create-form', true)

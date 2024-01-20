@@ -3,11 +3,9 @@
     <x-form-box :title="'Add category'" class="mx-0">
         <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
         <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="title"></p>
-        <template x-if="$store.api.categoryList.length > 0">
-            <div class="my-[45px]" >
-                <x-forms.add-category /> 
-            </div>
-        </template>
+        <div class="my-[45px]" x-show="$store.api.categoryList.length > 0" >
+            <x-forms.add-category /> 
+        </div>
         <div x-show="showCreateForm" class="my-[45px]">
             <p class="dark:text-light font-sans font-light text-base mt-5 flex items-center">
                 <span>Create a category</span>
@@ -19,6 +17,17 @@
 </div>
 
 <script type="text/javascript">
+
+class Category {
+    constructor(data, children, selected) {
+        this.id = data.id
+        this.name = data.name
+        this.color = data.color
+        this.parent_id = data.parent_id
+        this.children = children
+        this.selected = selected
+    }
+}
 
 document.addEventListener('alpine:init', () => {
 
@@ -33,10 +42,8 @@ document.addEventListener('alpine:init', () => {
         error: '',
 
         updateId(conv_id) {
-            if (conv_id != this.conversation_id) {
-                this.conversation_id = conv_id;
-                this.updateData()
-            }
+            this.conversation_id = conv_id;
+            this.updateData()
         },
 
         updateData() {
@@ -44,29 +51,17 @@ document.addEventListener('alpine:init', () => {
             const conversation = this.$store.api.conversations.find(conv => conv.id == this.conversation_id );
 
             if (conversation.categories) {
-
                 this.selectedCategories = conversation.categories.map(cat => cat.id)
-                this.selectCategories = this.$store.api.categoryOrderedList.map(cat => {
-
-                    if ( cat.children.length > 0 ) {
-                        cat.children.forEach(child => {
-                            if (conversation.categories.find(obj => obj.id == child.id)) {
-                                child.selected = true
-                            }
-                        })
-                    }
-
-                    if (conversation.categories.find(obj => obj.id == cat.id)) {
-                        cat.selected = true
-                    }
-
-                    return cat
-                })
-
-            } else {
-                this.selectCategories = this.$store.api.categoryOrderedList
             }
 
+            this.selectCategories = this.$store.api.categoryOrderedList.map(storeCat => {
+
+                let children = storeCat.children.map(obj => {
+                    return new Category(obj, null, this.selectedCategories.find(x => x == obj.id))
+                })
+
+                return new Category(storeCat, children, this.selectedCategories.find(x => x == storeCat.id))
+            })
         },
 
         resetData() {
@@ -77,23 +72,22 @@ document.addEventListener('alpine:init', () => {
 
         toggleCategory(ids) {
 
-            const index = this.selectCategories.findIndex(x => x.id == ids[0])
-            const category = this.selectCategories[index]
+            const category = this.selectCategories.find(x => x.id == ids[0])
             const idIndex = this.selectedCategories.findIndex(x => x == ids[0])
 
             if (ids.length > 1) {
 
-                const childIndex = category.children.findIndex(x => x.id == ids[1])
-                const child = category.children[childIndex]
+                const child = category.children.find(x => x.id == ids[1])
                 child.selected = !child.selected;
 
                 if (child.selected) {
+
+                    this.selectedCategories.push(ids[1])
+
                     if (idIndex == -1) {
                         category.selected = true;
                         this.selectedCategories.push(ids[0])
                     }
-
-                    this.selectedCategories.push(ids[1])
 
                 } else {
                     this.selectedCategories.splice(this.selectedCategories.findIndex(x => x == ids[1]), 1)
@@ -127,7 +121,6 @@ document.addEventListener('alpine:init', () => {
                 })
                 .then((response) => response.json())
                 .then(data => {
-                    console.log(data)
                     if (data.errors) {
                         this.error = data.message
                     } else {
