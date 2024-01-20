@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::middleware('conversation')->group(function() {
             Route::get('/conversations/{id}', [ConversationController::class, 'show'])->name('conversations.show');
             Route::put('/conversations/{id}', [ConversationController::class, 'update'])->name('conversations.update');
+            Route::delete('/conversations/{id}', [ConversationController::class, 'delete'])->name('conversations.delete');
         });
         Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
         Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');

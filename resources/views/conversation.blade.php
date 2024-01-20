@@ -8,15 +8,17 @@
                 <div class="mx-2 mb-[90px] lg:mb-[50px] transform lg:translate-y-[-10px]">
                     <div class="flex flex-col-reverse lg:flex-row lg:justify-between items-baseline">
                         <h1 class="font-special text-[32px] leading-tight lg:text-[40px] dark:text-light" x-text="post.title"></h1>
-                        <p x-text="post.create_time" class="font-sans dark:text-light text-sm mb-3 text-right"></p>
+                        <div class="flex flex-col items-end">
+                            <p x-text="post.create_time" class="font-sans dark:text-light text-sm text-right"></p>
+                            <x-conversation-menu />
+                        </div>
                     </div>
                     <template x-if="post.categories">
                         <div class="lg:hidden font-sans dark:text-light text-base mt-4 lg:mt-2">
                             <p>In: 
                                 <template x-for="(cat, index) in post.categories">
                                     <span class="font-special font-bold">
-                                        <a x-bind:href="`/category/${cat.id}`" x-text="cat.name"></span>
-                                        <span x-show="post.categories.length > 1 && index != post.categories.length -1">,</span> 
+                                        <a x-bind:href="`/category/${cat.id}`" x-text="cat.name"></a><span x-show="post.categories.length > 1 && index != post.categories.length - 1">,</span> 
                                     </span>
                                 </template>
                             </p>

@@ -5,7 +5,7 @@
                 <x-application-logo/>
             </div>
             <nav class="lg:hidden dashboard-nav flex items-center justify-end">
-                <x-dropdown :align="'center'">
+                <x-dropdown :align="'center'" :showArrow="true">
                     <x-slot name="trigger">
                             <div class="dark:text-light">Menu</div>
                     </x-slot>
@@ -49,7 +49,7 @@
                 <!-- Settings Dropdown -->
                 <div class="flex ms-6 items-center">
                     <div class="flex items-center">
-                        <x-dropdown :align="'right'" width="192">
+                        <x-dropdown :align="'right'" width="192" :showArrow="true">
                             <x-slot name="trigger">
                                     <span class="w-[13px] h-[13px] rounded-full bg-dark dark:bg-[#E5E8DB] mr-2" ></span>
                                     <div>{{ Auth::user()->name }}</div>

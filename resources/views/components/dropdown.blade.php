@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700'])
+@props(['align' => 'right', 'width' => '', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700', 'showArrow' => true ])
 
 @php
 switch ($align) {
@@ -21,9 +21,9 @@ if ($width) {
 
 <div class="relative dropdown" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
-        <button x-bind:class="`inline-flex items-center px-3 py-2 text-sm leading-4 text-[16px] rounded-md ${ open && 'lg:border-transparent' }`">
+        <button x-bind:class="`inline-flex items-center ${ {{ $showArrow }} && 'px-3 pt-2' } pb-1 text-sm leading-4 text-[16px] rounded-md ${ open && 'lg:border-transparent' }`">
             {{ $trigger }}
-            <div class="ms-1" x-bind:class="{ 'transform rotate-180': open }">
+            <div class="ms-1" x-show="{{ $showArrow }}" x-bind:class="{ 'transform rotate-180': open }">
                 <svg class="dark:fill-light h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
