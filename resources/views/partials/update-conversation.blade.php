@@ -1,19 +1,24 @@
-<div class="w-full lg:w-fit h-fit" x-data="{ showCreateForm: false }" @toggle-create-form.window="showCreateForm = $event.detail" >
-    <button class="block w-[17px] h-[17px] bg-contain bg-no-repeat ml-auto mb-3 mr-[20px] lg:mr-3 transform hover:scale-[1.1] transition-transform" @click="closeModal" style="background-image: url({{ asset('icons/close-icon.svg') }})"></button>
-    <x-form-box :title="'Add category'" class="mx-0">
-        <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
-        <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="title"></p>
-        <div class="my-[45px]" x-show="$store.api.categoryList.length > 0" >
-            <x-forms.add-category /> 
-        </div>
-        <div x-show="showCreateForm" class="my-[45px]">
-            <p class="dark:text-light font-sans font-light text-base mt-5 flex items-center">
-                <span>Create a category</span>
-                <span x-show="$store.api.categoryList.length > 0" @click="showCreateForm = false" class="ml-[15px] inline-block w-[12px] h-[12px] bg-contain bg-no-repeat cursor-pointer transform hover:scale-[1.1]" style="background-image: url({{ asset('icons/close-icon.svg') }})"></span>
-            </p>
-            <x-forms.create-category />
-        </div>
-    </x-form-box>
+<div 
+    class="w-full h-fit pr-6" 
+    x-data="{ showCreateForm: false }" 
+    @toggle-create-form.window="showCreateForm = $event.detail" 
+>
+    <div class="my-[45px]" x-show="$store.api.categoryList.length > 0" >
+        <x-forms.add-category /> 
+    </div>
+    <div x-show="showCreateForm" class="my-[45px]">
+        <p class="dark:text-light font-sans font-light text-base mt-5 flex items-center">
+            <span>Create a category</span>
+            <span 
+                x-show="$store.api.categoryList.length > 0" 
+                @click="showCreateForm = false" 
+                class="ml-[15px] inline-block w-[12px] h-[12px] bg-contain bg-no-repeat cursor-pointer transform hover:scale-[1.1]" 
+                style="background-image: url({{ asset('icons/close-icon.svg') }})"
+            >
+            </span>
+        </p>
+        <x-forms.create-category />
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -38,17 +43,11 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('addCategoryForm', () => ({
         selectCategories: [],
         selectedCategories: [],
-        conversation_id: null,
         error: '',
 
-        updateId(conv_id) {
-            this.conversation_id = conv_id;
-            this.updateData()
-        },
+        updateSelectCategories() {
 
-        updateData() {
-
-            const conversation = this.$store.api.conversations.find(conv => conv.id == this.conversation_id );
+            const conversation = this.$store.api.conversation
 
             if (conversation.categories) {
                 this.selectedCategories = conversation.categories.map(cat => cat.id)
@@ -67,7 +66,6 @@ document.addEventListener('alpine:init', () => {
         resetData() {
             this.selectCategories = []
             this.selectedCategories = []
-            this.conversation_id = null
         },
 
         toggleCategory(ids) {
@@ -111,7 +109,7 @@ document.addEventListener('alpine:init', () => {
 
             if (this.isValid()) {
 
-                await fetch('/api/conversations/' + this.conversation_id, {
+                await fetch('/api/conversations/' + this.$store.api.conversation.id, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -138,8 +136,11 @@ document.addEventListener('alpine:init', () => {
         },
 
         async handlePositiveSubmit() {
-            await this.$store.api.setConversations()
-            this.$dispatch('close-modal')
+            if (this.$store.api.conversation != this.$store.api.queryId ) {
+                await this.$store.api.setConversations()
+            }
+            this.$dispatch('reset-data');
+            this.$dispatch('close-modal', 'update-conversation')
         }
 
     }))

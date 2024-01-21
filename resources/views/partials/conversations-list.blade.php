@@ -1,4 +1,10 @@
-<div x-data="hasModal" @close-modal.window="closeModal()" x-show="!$store.api.loading && $store.api.conversations.length > 0" x-transition.opacity >
+<div 
+    x-data="hasModal" 
+    @open-update-modal.window="openModal($event.detail)" 
+    @close-update-modal.window="closeModal()"
+    x-show="!$store.api.loading && $store.api.conversations.length > 0" 
+    x-transition.opacity 
+>
     <template x-for="(timespan, index) in $store.api.orderedConversations" :key="index">
         <div x-show="timespan.posts.length > 0" class="mt-[28px]">
             <h6 class="font-sans lg:font-light text-sm lg:text-base dark:text-light mb-[15px]" x-text="timespan.timespan"></h6>
@@ -12,7 +18,7 @@
                                     <template x-for="cat in post.categories">
                                         <div class="w-[20px] h-[20px] lg:w-[32px] lg:h-[32px] origin-top-left rotate-[-4.45deg] rounded-[5px]  transform translate-x-[-10px]" x-bind:style="`background-color: ${cat.color}`"></div>
                                     </template>
-                                    <button @click="$event.preventDefault(); openModal(post.title, post.id)" class="add-icon w-[23px] h-[23px] absolute right-0 bottom-0 transform hover:scale-[1.1] transition-transform" style="background-image: url({{ asset('icons/plus-icon.svg') }})"></button>
+                                    <button @click.prevent="$dispatch('open-update-modal', post.id)" class="add-icon w-[23px] h-[23px] absolute right-0 bottom-0 transform hover:scale-[1.1] transition-transform" style="background-image: url({{ asset('icons/plus-icon.svg') }})"></button>
                                 </div>
                             </div>
                         </li>
@@ -22,9 +28,13 @@
         </div>
     </template>
 
-    <div class="modal fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-70 flex justify-center pt-[130px] lg:pt-[173px]" x-show="showModal" style="display: none" x-transition>
-        @include('partials/update-conversation')
-    </div>
+    <x-modal name="update-conversation" :show="false">
+        <x-form-box :title="'Add category'" class="mx-0">
+            <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
+            <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="$store.api.conversation.title"></p>
+            @include('partials/update-conversation')
+        </x-form-box>
+    </x-modal>
 </div>
 
 
@@ -33,22 +43,18 @@
     document.addEventListener('alpine:init', () => {
 
         Alpine.data('hasModal', () => ({
-            showModal: false,
-            title: '',
-            id: null,
 
-            openModal(post_title, post_id) {
-                this.title = post_title
-                this.id = post_id
-                this.showModal = true
-                this.$dispatch('update-id', this.id)
+            async openModal(post_id) {
+                this.$event.preventDefault(); 
+                await this.$store.api.setConversation(post_id)
+                this.$dispatch('update-cat-select')
+                this.$dispatch('open-modal', 'update-conversation')
                 this.$store.api.categoryList.length == 0 && this.$dispatch('toggle-create-form', true)
             },
 
             closeModal() {
-                this.id = null
-                this.showModal = false
                 this.$dispatch('reset-data')
+                this.$dispatch('close-modal', 'update-conversation')
             },
 
         }))

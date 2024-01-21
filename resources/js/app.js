@@ -12,6 +12,7 @@ Alpine.store('api', {
     conversations: [],
     orderedConversations: [],
     category: [],
+    conversation: {},
     queryId: null,
 
     setQueryId() {
@@ -62,9 +63,10 @@ Alpine.store('api', {
         }
     },
 
-    async getConversation() {
+    async getConversation(id = null) {
+        let queryId = id ?? this.queryId
         try {
-            const response = await fetch('/api/conversations/' + this.queryId)
+            const response = await fetch('/api/conversations/' + queryId)
             const data = await response.json()
             let post = data.data
 
@@ -81,6 +83,14 @@ Alpine.store('api', {
 
         } catch (error) {
             return error
+        }
+    },
+
+    async setConversation(id = null) {
+        if (id && this.conversations.length > 0) {
+            this.conversation = this.conversations.find(obj => obj.id === id)
+        } else {
+            this.conversation = await this.getConversation(id)
         }
     },
 

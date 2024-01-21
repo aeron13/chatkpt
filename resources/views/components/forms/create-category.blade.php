@@ -100,7 +100,7 @@
 
                 await this.$store.api.setCategories()
                 
-                this.$dispatch('update-data')
+                this.$dispatch('update-cat-select')
                 if (this.category.parent_id) this.$dispatch('toggle-category', [this.category.parent_id, category_id])
                 else this.$dispatch('toggle-category', [category_id])
 

@@ -13,6 +13,9 @@
                             <div class="absolute lg:relative right-0 lg:mr-3">
                                 <x-oneline-menu>
                                     <x-oneline-item>
+                                        <span class="cursor-pointer" @click="$dispatch('open-modal', 'update-conversation')">Edit</span>
+                                    </x-oneline-item>
+                                    <x-oneline-item>
                                         <x-forms.delete-conversation />
                                     </x-oneline-item>
                                 </x-oneline-menu>
@@ -50,7 +53,13 @@
                         </div>
                     </template>
                 </div>
-
+                <x-modal name="update-conversation" :show="false">
+                    <x-form-box :title="'Edit conversation'" class="mx-0">
+                        <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
+                        <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="post.title"></p>
+                        @include('partials/update-conversation')
+                    </x-form-box>
+                </x-modal>
         </div>
     </div>
 </x-app-layout>
@@ -64,17 +73,13 @@
             post: {},
 
             async init() {
-
                 this.$store.api.setQueryId()
-                this.post = await this.$store.api.getConversation()
+                await this.$store.api.setConversation()
+                this.post = this.$store.api.conversation
+                this.$dispatch('update-cat-select')
                 this.$store.api.loading = false
-
             }
         }))
     })
-
-    // window.addEventListener('load', () => {
-
-    // })
 
 </script>
