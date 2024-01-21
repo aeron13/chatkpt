@@ -8,9 +8,9 @@
                 <div class="ml-2 mb-[90px] lg:mb-[50px] transform lg:translate-y-[-6px]">
                     <div class="w-full flex flex-col-reverse lg:flex-row lg:justify-between lg:items-center">
                         <h1 class="font-special text-[32px] leading-tight lg:text-[40px] dark:text-light" x-text="post.title"></h1>
-                        <div class="flex w-full md:w-fit justify-between lg:flex-col items-end mb-[20px] lg:mb-0">
+                        <div class="flex w-full md:w-fit justify-between lg:flex-row-reverse lg:justify-end items-center mb-[20px] lg:mb-0">
                             <p x-text="post.create_time" class="font-sans dark:text-light text-xs opacity-50 lg:text-sm text-right"></p>
-                            <div class="absolute right-0">
+                            <div class="absolute lg:relative right-0 lg:mr-3">
                                 <x-oneline-menu>
                                     <x-oneline-item>
                                         <x-forms.delete-conversation />
