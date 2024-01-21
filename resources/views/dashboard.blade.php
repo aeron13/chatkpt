@@ -3,8 +3,8 @@
         <div class="mx-[20px] lg:mx-[35px] grid lg:grid-cols-12 pt-[162px]">
             @include('partials/sidebar')
             <div class="lg:col-start-4 lg:col-end-12 pb-[100px]" >
-                <div class="flex items-center gap-5 justify-between">
-                    <h6 class="font-sans font-light text-lg dark:text-light">All conversations</h6>
+                <div class="flex items-center gap-5 justify-between mb-14">
+                    <h6 class="font-sans font-medium text-lg lg:text-[32px] dark:text-light">All conversations</h6>
                 </div>
                 @include('partials/conversations-list')
             </div>

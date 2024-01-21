@@ -45,7 +45,8 @@
             </nav>
             <nav class="hidden lg:flex col-span-9 justify-between font-light dark:text-light text-[16px] font-sans h-full items-center pr-[26px]">
                 <div class="flex">
-                    <a href="{{ route('dashboard') }}" class="mr-10">Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="mr-16">Dashboard</a>
+                    <a href="{{ route('load') }}">Load</a>
                 </div>
                 <!-- Settings Dropdown -->
                 <div class="flex ms-6 items-center">
@@ -58,9 +59,6 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('load')">
-                                    {{ __('Load conversations') }}
-                                </x-dropdown-link>
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
