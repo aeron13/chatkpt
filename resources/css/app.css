@@ -40,6 +40,21 @@ option[value=''] {
     }
 }
 
+.bg-profile {
+    background-image: url('../../public/img/bg-profile-mob.svg');
+    background-position: center -30px;
+    background-size: 110%;
+}
+
+@media (min-width: 960px) {
+    .bg-profile {
+        background-image: url('../../public/img/bg-profile.svg');
+        background-position: center top;
+        background-size: cover;
+    }
+}
+
+
 /* mobile menu */
 nav.dashboard-nav .dropdown {
     position: unset;
