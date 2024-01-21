@@ -1,28 +1,22 @@
 <x-app-layout>
-    <div class="mx-[15px] lg:mx-[35px] grid grid-cols-12 pt-[170px] lg:pt-0">
+    <div class="mx-[15px] lg:mx-[35px] grid grid-cols-12 pt-[150px] lg:pt-0">
         <div class="lg:pt-[162px]">
             @include('partials/sidebar')
         </div>
         <div class="col-span-12 lg:col-start-4 pb-[100px] lg:pt-[162px]" x-data="conversation" >
 
-                <div class="mx-2 mb-[90px] lg:mb-[50px] transform lg:translate-y-[-10px]">
-                    <div class="flex flex-col-reverse lg:flex-row lg:justify-between items-baseline">
+                <div class="ml-2 mb-[90px] lg:mb-[50px] transform lg:translate-y-[-6px]">
+                    <div class="w-full flex flex-col-reverse lg:flex-row lg:justify-between lg:items-center">
                         <h1 class="font-special text-[32px] leading-tight lg:text-[40px] dark:text-light" x-text="post.title"></h1>
-                        <div class="flex flex-col items-end">
-                            <p x-text="post.create_time" class="font-sans dark:text-light text-sm text-right"></p>
-                            <x-dropdown :align="'right'" width="140" showArrow="false">
-                                <x-slot name="trigger">
-                                    <!-- <span class="text-white">edit</span> -->
-                                    <x-burger />
-                                </x-slot>
-                                <x-slot name="content">
-                                <div class="">
-                                    <x-dropdown-link>
+                        <div class="flex w-full md:w-fit justify-between lg:flex-col items-end mb-[20px] lg:mb-0">
+                            <p x-text="post.create_time" class="font-sans dark:text-light text-xs opacity-50 lg:text-sm text-right"></p>
+                            <div class="absolute right-0">
+                                <x-oneline-menu>
+                                    <x-oneline-item>
                                         <x-forms.delete-conversation />
-                                    </x-dropdown-link>
-                                </div>
-                                </x-slot>
-                            </x-dropdown>
+                                    </x-oneline-item>
+                                </x-oneline-menu>
+                            </div>
                         </div>
                     </div>
                     <template x-if="post.categories">

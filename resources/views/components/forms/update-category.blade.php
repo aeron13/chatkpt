@@ -6,7 +6,7 @@
     style="display: none" 
     x-transition
 >
-    <div class="w-full lg:w-fit h-fit mt-20">
+    <div class="w-full lg:w-fit h-fit lg:mt-20">
         <button class="block w-[17px] h-[17px] bg-contain bg-no-repeat ml-auto mb-3 mr-[20px] lg:mr-3 transform hover:scale-[1.1] transition-transform" @click="showUpdateForm = false" style="background-image: url({{ asset('icons/close-icon.svg') }})"></button>
         <x-form-box title="Update category" class="mx-0">
             <form class="my-[45px]" @submit.prevent="handleSubmit">

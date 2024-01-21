@@ -18,9 +18,10 @@
     <body class="bg-light-gradient dark:bg-none dark:bg-dark">
             <x-header>
                 <div class="lg:hidden">
-                    <x-dropdown :align="'right'" width="140" :showArrow="true">
+                    <x-dropdown :align="'right'" width="140">
                         <x-slot name="trigger">
-                                <div class="dark:text-light">Start</div>
+                            <div class="dark:text-light">Start</div>
+                            <x-toggle-arrow />
                         </x-slot>
 
                         <x-slot name="content">

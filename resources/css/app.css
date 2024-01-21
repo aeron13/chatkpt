@@ -47,10 +47,12 @@ nav.dashboard-nav .dropdown {
 
 nav.dashboard-nav .dropdown-content {
     position: relative;
-    width: calc(100vw - 26px);
-    height: calc(100vh - 80px);
-    right: -4px;
+    width: calc(100vw + 2px);
+    height: calc(100vh - 58px);
+    right: -16px;
+    top: 16px;
     padding: 30px 30px 60px;
+    overflow-y: scroll;
 }
 
 nav.dashboard-nav .categories-list li {
