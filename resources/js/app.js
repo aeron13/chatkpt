@@ -113,11 +113,15 @@ Alpine.store('api', {
         // });
     },
 
-    async setConversations() {
-        if (this.queryId) {
-            [this.conversations, this.category] = await this.getCategoryConversations(this.queryId)
+    async setConversations(data = null) {
+        if (data) {
+            this.conversations = data
         } else {
-            this.conversations = await this.getConversations()
+            if (this.queryId) {
+                [this.conversations, this.category] = await this.getCategoryConversations(this.queryId)
+            } else {
+                this.conversations = await this.getConversations()
+            }
         }
         this.orderConversations(this.conversations)
     },
