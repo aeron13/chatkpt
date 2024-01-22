@@ -14,7 +14,7 @@
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
     >{{ __('Delete Account') }}</x-danger-button>
 
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" onClose="" focusable>
         <x-form-box class="" title="Are you sure?">
             <form method="post" action="{{ route('profile.destroy') }}" class="pb-12 pt-6">
                 @csrf

@@ -32,7 +32,13 @@
         <p x-html="error" class="text-magenta font-bold"></p>
     </div>
     <div class="mt-6 lg:mt-4">
-        <x-primary-button>{{ __('Create') }}</x-primary-button>
+        <x-primary-button>
+            <span x-show="sending">
+                <x-spinner />
+            </span>
+            <span x-text="sending ? 'Saving' : 'Create' ">
+            </span>
+        </x-primary-button>
     </div>
 
 </form>
@@ -54,6 +60,7 @@
                 parent_id: null,
             },
             error: '',
+            sending: false,
 
             init() {
                 this.category.color = this.colors[0].hex
@@ -68,7 +75,9 @@
 
                 this.$event.preventDefault()
 
-                if (this.isValid()) {
+                if (this.isValid() && !this.sending) {
+
+                    this.sending = true
 
                     await fetch('/api/categories', {
                         method: 'POST',
@@ -99,6 +108,8 @@
             async handlePositiveSubmit(category_id) {
 
                 await this.$store.api.setCategories()
+
+                this.sending = false
                 
                 this.$dispatch('update-cat-select')
                 if (this.category.parent_id) this.$dispatch('toggle-category', [this.category.parent_id, category_id])

@@ -39,7 +39,13 @@
                     <p x-html="error" class="text-magenta font-bold"></p>
                 </div>
                 <div class="mt-6 lg:mt-4">
-                    <x-primary-button>{{ __('Update') }}</x-primary-button>
+                    <x-primary-button>
+                        <span x-show="sending">
+                            <x-spinner />
+                        </span>
+                        <span x-text="sending ? 'Saving' : 'Update' ">
+                        </span>
+                    </x-primary-button>
                 </div>
             </form>
         </x-form-box>
@@ -65,6 +71,7 @@
                 parent_id: null,
             },
             error: '',
+            sending: false,
 
             init() {
                 this.category.color = this.colors[0].hex
@@ -87,9 +94,9 @@
 
                 this.$event.preventDefault()
 
-                console.log(this.category)
+                if ( this.isValid() && !this.sending ) {
 
-                if (this.isValid()) {
+                    this.sending = true
 
                     await fetch('/api/categories/' + this.$store.api.queryId, {
                         method: 'PUT',
@@ -121,7 +128,8 @@
 
                 await this.$store.api.setCategories()
                 await this.$store.api.setConversations()
-
+                
+                this.sending = false
                 this.showUpdateForm = false
 
                 this.category.name = null

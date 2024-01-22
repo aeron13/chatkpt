@@ -33,7 +33,13 @@
     </div>
 
     <div x-bind:class="`mt-4 ${ showCreateForm && 'hidden'  }`">
-        <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <x-primary-button>
+            <span x-show="sending">
+                <x-spinner />
+            </span>
+            <span x-text="sending ? 'Saving' : 'Save' ">
+            </span>
+        </x-primary-button>
     </div>
 
 </form>

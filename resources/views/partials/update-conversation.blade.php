@@ -44,6 +44,7 @@ document.addEventListener('alpine:init', () => {
         selectCategories: [],
         selectedCategories: [],
         error: '',
+        sending: false,
 
         updateSelectCategories() {
 
@@ -107,7 +108,9 @@ document.addEventListener('alpine:init', () => {
 
             event.preventDefault()
 
-            if (this.isValid()) {
+            if (this.isValid() && !this.sending ) {
+
+                this.sending = true
 
                 await fetch('/api/conversations/' + this.$store.api.conversation.id, {
                     method: 'PUT',
@@ -127,17 +130,20 @@ document.addEventListener('alpine:init', () => {
                 })
                 .catch((error) => {
                     console.log(error)
+                    this.error = error
                 });
 
             } else {
                 this.error = 'Some fields are missing. Check and try again'
             }
-            
+            this.sending = false
         },
 
         async handlePositiveSubmit() {
-            if (this.$store.api.conversation != this.$store.api.queryId ) {
+            if (this.$store.api.conversation.id != this.$store.api.queryId ) {
                 await this.$store.api.setConversations()
+            } else {
+                await this.$store.api.setCategories()
             }
             this.$dispatch('reset-data');
             this.$dispatch('close-modal', 'update-conversation')
