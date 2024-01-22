@@ -13,7 +13,7 @@
 
                     <x-slot name="content">
                         <div class="mb-12" x-show="$store.api.categoryList.length > 0">
-                            <h3 class="mb-4">Categories</h3>
+                            <h3 class="mb-4 text-sm">Categories</h3>
                             @include('partials/categories-list')
                         </div>
 

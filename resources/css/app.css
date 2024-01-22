@@ -66,12 +66,12 @@ nav.dashboard-nav .dropdown-content {
     height: calc(100vh - 58px);
     right: -16px;
     top: 16px;
-    padding: 30px 30px 60px;
+    padding: 30px 30px 130px;
     overflow-y: scroll;
 }
 
-nav.dashboard-nav .categories-list li {
-    margin-bottom: 15px;
+nav.dashboard-nav .categories-list > ul li {
+    margin-bottom: 18px;
 }
 
 nav.dashboard-nav .dropdown-content a {
