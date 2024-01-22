@@ -142,10 +142,13 @@ document.addEventListener('alpine:init', () => {
         async handlePositiveSubmit() {
             if (this.$store.api.conversation.id != this.$store.api.queryId ) {
                 await this.$store.api.setConversations()
+                this.$dispatch('reset-data');
             } else {
+                console.log('i')
+                await this.$store.api.setConversation()
                 await this.$store.api.setCategories()
+                this.$dispatch('update-cat-select');
             }
-            this.$dispatch('reset-data');
             this.$dispatch('close-modal', 'update-conversation')
         }
 

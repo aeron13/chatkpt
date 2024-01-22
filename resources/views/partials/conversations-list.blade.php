@@ -11,9 +11,9 @@
             <ul class="grid lg:grid-cols-2 gap-2 lg:gap-4 mb-[40px]">
                 <template x-for="post in timespan.posts" :key="post.id">
                     <a x-bind:href="post.url">
-                        <li class="rounded-2xl bg-lightglass-1 dark:bg-glass-1 rounded-xl py-[10px] lg:py-[16px] pl-[20px] lg:pl-[25px] pr-[10px] lg:pr-[16px] border border-[0.5px] border-[#C9C9C9] dark:border-[#868686] lg:h-[162px] transform hover:rotate-[-1deg] transition-transform duration-500" >
+                        <li class="rounded-2xl bg-lightglass-1 dark:bg-glass-1 rounded-xl py-[8px] lg:py-[16px] pl-[13px] lg:pl-[25px] pr-[8px] lg:pr-[16px] border border-[0.5px] border-[#C9C9C9] dark:border-[#868686] lg:h-[162px] transform hover:rotate-[-1deg] transition-transform duration-500" >
                             <div class="w-full h-full flex flex-col justify-between items-end">
-                                <p class="w-full font-special text-2xl font-medium dark:text-light mb-[20px] mt-[5px] pr-[6px] lg:m-0 lg:p-0" x-text="post.title"></p>
+                                <p class="w-full font-special text-xl lg:text-2xl font-medium dark:text-light mb-[20px] mt-[5px] pr-[16px] lg:m-0 lg:p-0" x-text="post.title"></p>
                                 <div class="w-full flex relative gap-2 items-center">
                                     <template x-for="cat in post.categories">
                                         <div 

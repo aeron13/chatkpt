@@ -19,8 +19,17 @@ class ConversationController extends Controller
     /**
      * Get the conversations from the db
      */
-    public function index() 
+    public function index(Request $request) 
     {
+        $query = $request['q'];
+        
+        if ($query) {
+            return new ConversationCollection(Conversation::where('title', 'like', '%' . $query . '%')
+                ->orderBy('create_time', 'desc')
+                ->get()
+            );
+        }
+
         return new ConversationCollection(Conversation::orderBy('create_time', 'desc')->get());
     }
     
