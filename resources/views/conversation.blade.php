@@ -13,7 +13,7 @@
                             <div class="absolute lg:relative right-0 lg:mr-3">
                                 <x-oneline-menu>
                                     <x-oneline-item>
-                                        <span class="cursor-pointer" @click="$dispatch('open-modal', 'update-conversation')">Edit</span>
+                                        <span class="cursor-pointer" @click="$dispatch('open-modal', 'update-conversation'); $dispatch('close-oneline-menu')">Edit</span>
                                     </x-oneline-item>
                                     <x-oneline-item>
                                         <x-forms.delete-conversation />
@@ -53,7 +53,7 @@
                         </div>
                     </template>
                 </div>
-                <x-modal name="update-conversation" :show="false">
+                <x-modal name="update-conversation" :show="false" onClose="$dispatch('update-cat-select')" >
                     <x-form-box :title="'Edit conversation'" class="mx-0">
                         <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
                         <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="post.title"></p>

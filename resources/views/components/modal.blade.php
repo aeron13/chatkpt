@@ -1,6 +1,7 @@
 @props([
     'name',
     'show' => false,
+    'onClose'
 ])
 
 <div 
@@ -30,7 +31,7 @@
         }
     })"
     x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
-    x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"
+    x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null;"
     x-on:close.stop="show = false"
     x-on:keydown.escape.window="show = false"
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
@@ -40,7 +41,7 @@
     <div class="w-full lg:w-fit h-fit" >
         <button 
             class="block w-[17px] h-[17px] bg-contain bg-no-repeat ml-auto mb-3 mr-[20px] lg:mr-3 transform hover:scale-[1.1] transition-transform" 
-            @click="show = false" 
+            @click="show = false; {{ $onClose }}" 
             style="background-image: url({{ asset('icons/close-icon.svg') }})"
         >
         </button>
