@@ -17,7 +17,7 @@
                                 <div class="w-full flex relative gap-2 items-center">
                                     <template x-for="cat in post.categories">
                                         <div 
-                                            class="origin-top-left rotate-[-4.45deg] transform translate-x-[-10px]"
+                                            class="origin-top-left rotate-[-4.45deg] transform md:translate-x-[-10px]"
                                             x-bind:class="cat.parent_id ? 'w-[13px] h-[13px] lg:w-[20px] lg:h-[20px] rounded-[4px]' : 'rounded-[5px] w-[20px] h-[20px] lg:w-[32px] lg:h-[32px]' " 
                                             x-bind:style="`background-color: ${cat.color}`"
                                         >
