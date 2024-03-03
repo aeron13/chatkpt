@@ -8,7 +8,7 @@
                         <span class="w-[17px] h-[17px] rotate-[-4.45deg] rounded-[4px] mt-2" x-bind:style="`background-color: ${$store.api.category.color}`"></span>
                         <h6 class="font-special font-medium text-[32px] leading-tight lg:text-[40px] dark:text-light" x-text="$store.api.category.name"></h6>
                     </div>
-                    <div class="mb-1">
+                    <div class="mb-1 absolute right-0">
                         <x-oneline-menu>
                             <x-oneline-item>
                                 <span @click="$dispatch('toggle-update-form'); $dispatch('close-oneline-menu')" class="cursor-pointer hover:font-bold">Edit</span>
