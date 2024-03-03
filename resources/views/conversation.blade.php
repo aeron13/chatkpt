@@ -16,7 +16,7 @@
                                         <span class="cursor-pointer" @click="$dispatch('open-modal', 'update-conversation'); $dispatch('close-oneline-menu')">Edit</span>
                                     </x-oneline-item>
                                     <x-oneline-item>
-                                        <x-forms.delete-conversation />
+                                        <span @click="$dispatch('open-modal', 'confirm-conversation-deletion' ); $dispatch('close-oneline-menu')" class="cursor-pointer hover:text-magenta hover:font-bold">Delete</span>
                                     </x-oneline-item>
                                 </x-oneline-menu>
                             </div>
@@ -63,6 +63,7 @@
                         @include('partials/update-conversation')
                     </x-form-box>
                 </x-modal>
+                <x-forms.delete-conversation />
         </div>
     </div>
 </x-app-layout>
