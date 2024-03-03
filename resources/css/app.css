@@ -122,6 +122,11 @@ input[type='file']::-webkit-file-upload-button {
     background-image: url('/icons/plus-icon.svg');
     background-repeat: no-repeat;
     background-size: contain;
+    filter: brightness(0);
+}
+
+.dark .add-icon {
+    filter: unset;
 }
 
 /* html converted from markdown */
