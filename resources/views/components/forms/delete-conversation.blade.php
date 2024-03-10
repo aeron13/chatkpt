@@ -1,4 +1,4 @@
-<x-modal name="confirm-conversation-deletion" :show="false" onClose="">
+<x-modal name="confirm-conversation-deletion" :show="false" onClose="" onOpen="">
     <x-form-box class="px-2" title="Are you sure?">
             <div x-data="deleteConversationForm" class="mt-12 flex flex-wrap gap-3 pb-10">
                 <x-secondary-button x-on:click="$dispatch('close')" class="w-fit">

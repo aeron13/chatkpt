@@ -144,7 +144,6 @@ document.addEventListener('alpine:init', () => {
                 await this.$store.api.setConversations()
                 this.$dispatch('reset-data');
             } else {
-                console.log('i')
                 await this.$store.api.setConversation()
                 await this.$store.api.setCategories()
                 this.$dispatch('update-cat-select');

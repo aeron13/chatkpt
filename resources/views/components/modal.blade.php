@@ -1,7 +1,8 @@
 @props([
     'name',
     'show' => false,
-    'onClose'
+    'onClose',
+    'onOpen'
 ])
 
 <div 
@@ -30,7 +31,7 @@
             document.body.classList.remove('overflow-y-hidden');
         }
     })"
-    x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
+    x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null; {{ $onOpen }}"
     x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null;"
     x-on:close.stop="show = false"
     x-on:keydown.escape.window="show = false"

@@ -33,7 +33,7 @@
         </div>
     </template>
 
-    <x-modal name="update-conversation" :show="false" onClose="" focusable>
+    <x-modal name="update-conversation" :show="false" onClose="" focusable onOpen="">
         <x-form-box :title="'Add category'" class="mx-0">
             <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
             <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="$store.api.conversation.title"></p>

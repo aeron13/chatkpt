@@ -3,7 +3,7 @@
         <div class="lg:pt-[162px]">
             @include('partials/sidebar')
         </div>
-        <div class="col-span-12 lg:col-start-4 pb-[100px] lg:pt-[162px]" x-data="conversation" >
+        <div class="col-span-12 lg:col-start-4 pb-[100px] lg:pt-[162px]" x-show="!$store.api.loading"  x-data="conversation" >
 
                 <div class="ml-2 mb-[60px] lg:mb-[50px] transform lg:translate-y-[-6px]">
                     <div class="w-full flex flex-col-reverse lg:flex-row lg:justify-between lg:items-center">
@@ -56,7 +56,7 @@
                         </div>
                     </template>
                 </div>
-                <x-modal name="update-conversation" :show="false" onClose="$dispatch('update-cat-select')" >
+                <x-modal name="update-conversation" :show="false" onClose="$dispatch('update-cat-select')" onOpen="$dispatch('update-cat-select')" >
                     <x-form-box :title="'Edit conversation'" class="mx-0">
                         <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
                         <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="post.title"></p>
@@ -82,7 +82,6 @@
                 this.$store.api.setQueryId()
                 await this.$store.api.setConversation()
                 this.post = this.$store.api.conversation
-                this.$dispatch('update-cat-select')
                 this.$store.api.loading = false
             }
         }))
