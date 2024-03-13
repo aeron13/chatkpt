@@ -14,6 +14,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
     </head>
     <body class="bg-light-gradient dark:bg-none dark:bg-dark relative">
         @include('layouts.navigation')
