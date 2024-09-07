@@ -1,5 +1,5 @@
 <header class="fixed w-full z-[9]">
-    <div class="relative mt-[12px] lg:mt-[26px] mx-[14px] lg:mx-[35px] rounded-[10px] border-[#C9C9C9] dark:border-[#767676] border-[0.5px] dark:shadow dark:lg:shadow-glass-2">
+    <div class="relative mt-[12px] lg:mt-[26px] mx-[14px] lg:mx-[35px] rounded-[10px] border-[#C9C9C9] dark:border-[#767676] border-[0.5px] shadow-strong dark:shadow dark:lg:shadow-glass-2">
         <div class="relative grid grid-cols-2 lg:grid-cols-12 rounded-[10px] bg-lightglass-2 dark:bg-glass-2 backdrop-blur-md z-1">
             <div class="lg:col-span-3 px-[17px] py-[13px] lg:px-[26px] lg:pt-[18px] lg:pb-[21px]">
                 <x-application-logo/>

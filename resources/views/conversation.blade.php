@@ -44,7 +44,7 @@
                             <template x-if="index == 0">
                                 <div class="z-0 fixed w-[66px] h-[66px] rotate-[-4.45deg] rounded-[9px] transform translate-x-[-20px] lg:translate-x-[-15px] translate-y-[-12px]" x-bind:style="post.categories && `background-color: ${post.categories[0].color}`"></div>
                             </template>
-                            <div x-bind:class="`relative z-1 p-[20px] lg:pt-[24px] lg:px-[30px] lg:pb-[37px] rounded-[16px] mb-[21px] max-w-[960px] backdrop-blur-[28.73px] ${ msg.author === 'user' && 'border border-[#c3baba] dark:border-[#868686] border-[0.5px] bg-lightglass-1 dark:bg-glass-1' }`">
+                            <div x-bind:class="`relative z-1 p-[20px] lg:pt-[24px] lg:px-[30px] lg:pb-[37px] rounded-[16px] mb-[21px] max-w-[960px] backdrop-blur-[28.73px] ${ msg.author === 'user' && 'border border-[#c3baba] dark:border-[#868686] border-[0.5px] bg-lightglass-1 shadow-stark dark:bg-glass-1' }`">
                                 <div class="font-sans flex items-center mb-1 lg:mb-6">
                                     <span class="inline-block w-[15px] h-[15px] lg:w-[26px] lg:h-[26px] rounded-full mr-2 lg:mr-3"  x-bind:style="`background-color: ${ post.categories && msg.author === 'user' ? post.categories[0].color : '#E5E8DB' }`"></span>
                                     <p class="dark:text-light lg:text-lg font-bold" x-text="msg.author === 'user' ? 'You' : msg.author"></p>   

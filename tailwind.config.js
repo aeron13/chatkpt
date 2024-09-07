@@ -39,7 +39,9 @@ export default {
       },
       boxShadow: {
           'glass-2': '2px 2px 20px 0px rgba(0, 0, 0, 0.30)',
-          'lightglass-2': '2px 14px 59px 0px rgba(0, 0, 0, 0.07)'
+          'lightglass-2': '2px 14px 59px 0px rgba(0, 0, 0, 0.07)',
+          'strong': '2px 5px 15px 0 rgba(0, 0, 0, 0.10)',
+          'stark': '2px 4px 10px rgba(0, 0, 0, 0.15)'
       }
     },
   },
