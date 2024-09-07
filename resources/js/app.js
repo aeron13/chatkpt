@@ -1,8 +1,11 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
+import persist from '@alpinejs/persist'
 import showdown from 'showdown';
 
 window.Alpine = Alpine;
+
+Alpine.plugin(persist)
 
 Alpine.store('api', {
 

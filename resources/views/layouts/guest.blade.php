@@ -45,6 +45,6 @@
             <main class="bg-welcome min-h-screen w-full bg-no-repeat">
                 {{ $slot }}
             </main>
-            <!-- <x-toggle-dark-mode /> -->
+            <x-toggle-dark-mode />
     </body>
 </html>
