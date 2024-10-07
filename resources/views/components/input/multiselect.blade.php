@@ -13,12 +13,12 @@
         <template x-show="selectedCategories.length > 0" x-for="cat in selectCategories.filter(obj => !obj.parent_id)">
             <div class="flex gap-1">
                 <template x-if="cat.selected">
-                    <x-tag name="cat.name" color="cat.color" removeAction="$dispatch('toggle-category', [cat.id])" /> 
+                    <x-ui.tag name="cat.name" color="cat.color" removeAction="$dispatch('toggle-category', [cat.id])" /> 
                 </template>
                 <template x-if="cat.children">
                     <template x-for="child in cat.children">
                         <template x-if="child.selected">
-                            <x-tag name="child.name" color="child.color" removeAction="$dispatch('toggle-category', [cat.id, child.id])" /> 
+                            <x-ui.tag name="child.name" color="child.color" removeAction="$dispatch('toggle-category', [cat.id, child.id])" /> 
                         </template>
                     </template>
                 </template>

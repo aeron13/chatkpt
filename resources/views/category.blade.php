@@ -9,14 +9,14 @@
                         <h6 class="font-special font-medium text-[32px] leading-tight lg:text-[40px] dark:text-light" x-text="$store.api.category.name"></h6>
                     </div>
                     <div class="mb-1 absolute right-0">
-                        <x-oneline-menu>
-                            <x-oneline-item>
+                        <x-ui.oneline-menu>
+                            <x-ui.oneline-item>
                                 <span @click="$dispatch('toggle-update-form'); $dispatch('close-oneline-menu')" class="cursor-pointer hover:font-bold">Edit</span>
-                            </x-oneline-item>
-                            <x-oneline-item class="font-sans text-base font-medium text-dark px-[13px] pb-[6px] pt-[5px]">
+                            </x-ui.oneline-item>
+                            <x-ui.oneline-item class="font-sans text-base font-medium text-dark px-[13px] pb-[6px] pt-[5px]">
                                 <span @click="$dispatch('open-modal', 'confirm-category-deletion' ); $dispatch('close-oneline-menu')" class="cursor-pointer hover:text-magenta hover:font-bold">Delete</span>
-                            </x-oneline-item>
-                        </x-oneline-menu>
+                            </x-ui.oneline-item>
+                        </x-ui.oneline-menu>
                     </div>
                 </div>
                 @include('partials/conversations-list')

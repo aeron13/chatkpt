@@ -17,16 +17,16 @@
         @csrf
         @method('patch')
 
-        <x-form-block class="mt-4">
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </x-form-block >
+        <x-wrappers.form-field class="mt-4">
+            <x-input.label for="name" :value="__('Name')" />
+            <x-input.text id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input.error class="mt-2" :messages="$errors->get('name')" />
+        </x-wrappers.form-field >
 
-        <x-form-block >
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+        <x-wrappers.form-field >
+            <x-input.label for="email" :value="__('Email')" />
+            <x-input.text id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-input.error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -45,10 +45,10 @@
                     @endif
                 </div>
             @endif
-        </x-form-block >
+        </x-wrappers.form-field >
 
-        <x-form-block class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <x-wrappers.form-field class="flex items-center gap-4">
+            <x-buttons.primary>{{ __('Save') }}</x-buttons.primary>
 
             @if (session('status') === 'profile-updated')
                 <p
@@ -59,6 +59,6 @@
                     class="text-sm text-green"
                 >{{ __('Saved.') }}</p>
             @endif
-        </x-form-block>
+        </x-wrappers.form-field>
     </form>
 </section>

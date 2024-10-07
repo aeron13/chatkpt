@@ -1,21 +1,21 @@
-<x-form-box :title="'Load conversations.json'" :class="'2xl:min-w-[600px]'">
+<x-wrappers.form :title="'Load conversations.json'" :class="'2xl:min-w-[600px]'">
 
     <form x-data="form" @submit.prevent="processJson" class="mt-[56px] mb-[67px] lg:mx-[30px]">
         @csrf
         @method('post')
 
-        <x-form-block>
-            <x-text-input id="json" name="json" type="file" class="border-none text-dark" @change="handleFileUpload" />
-        </x-form-block>
+        <x-wrappers.form-field>
+            <x-input.text id="json" name="json" type="file" class="border-none text-dark" @change="handleFileUpload" />
+        </x-wrappers.form-field>
 
         <div class="mt-4">
-            <x-primary-button x-bind:class="`flex items-center ${ !ok && 'bg-white text-dark opacity-30 pointer-events-none' }`">
+            <x-buttons.primary x-bind:class="`flex items-center ${ !ok && 'bg-white text-dark opacity-30 pointer-events-none' }`">
                 <span x-show="loadingJson">
-                    <x-spinner />
+                    <x-ui.spinner />
                 </span>
                 <span x-text="loadingJson ? 'Saving' : 'Save' ">
                 </span>
-            </x-primary-button>
+            </x-buttons.primary>
         </div>
 
         <div class="mt-12">
@@ -24,7 +24,7 @@
         </div>
 
     </form>
-</x-form-box>
+</x-wrappers.form>
 
 <script>
     document.addEventListener('alpine:init', () => {

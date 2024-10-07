@@ -11,14 +11,14 @@
                         <div class="flex w-full md:w-fit justify-between lg:flex-row-reverse lg:justify-end items-center mb-[20px] lg:mb-0">
                             <p x-text="post.create_time" class="font-sans dark:text-light text-xs opacity-50 lg:text-sm text-right"></p>
                             <div class="absolute lg:relative right-0 lg:mr-3">
-                                <x-oneline-menu>
-                                    <x-oneline-item>
+                                <x-ui.oneline-menu>
+                                    <x-ui.oneline-item>
                                         <span class="cursor-pointer" @click="$dispatch('open-modal', 'update-conversation'); $dispatch('close-oneline-menu')">Edit</span>
-                                    </x-oneline-item>
-                                    <x-oneline-item>
+                                    </x-ui.oneline-item>
+                                    <x-ui.oneline-item>
                                         <span @click="$dispatch('open-modal', 'confirm-conversation-deletion' ); $dispatch('close-oneline-menu')" class="cursor-pointer hover:text-magenta hover:font-bold">Delete</span>
-                                    </x-oneline-item>
-                                </x-oneline-menu>
+                                    </x-ui.oneline-item>
+                                </x-ui.oneline-menu>
                             </div>
                         </div>
                     </div>
@@ -56,13 +56,13 @@
                         </div>
                     </template>
                 </div>
-                <x-modal name="update-conversation" :show="false" onClose="$dispatch('update-cat-select')" onOpen="$dispatch('update-cat-select')" >
-                    <x-form-box :title="'Edit conversation'" class="mx-0">
+                <x-ui.modal name="update-conversation" :show="false" onClose="$dispatch('update-cat-select')" onOpen="$dispatch('update-cat-select')" >
+                    <x-wrappers.form :title="'Edit conversation'" class="mx-0">
                         <p class="font-sans dark:text-light text-[15px] mt-[36px]">Add a category to:</p>
                         <p class="font-special dark:text-light text-xl lg:text-2xl" x-text="post.title"></p>
                         @include('partials/update-conversation')
-                    </x-form-box>
-                </x-modal>
+                    </x-wrappers.form>
+                </x-ui.modal>
                 <x-forms.delete-conversation />
         </div>
     </div>

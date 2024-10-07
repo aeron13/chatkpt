@@ -20,22 +20,22 @@
     <body class="bg-light-gradient dark:bg-none dark:bg-dark">
             <x-header>
                 <div class="lg:hidden">
-                    <x-dropdown :align="'right'" width="140">
+                    <x-ui.dropdown :align="'right'" width="140">
                         <x-slot name="trigger">
                             <div class="dark:text-light">Start</div>
-                            <x-toggle-arrow />
+                            <x-ui.toggle-arrow />
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('login')">
+                            <x-ui.dropdown-link :href="route('login')">
                                 {{ __('Log in') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('register')">
+                            </x-ui.dropdown-link>
+                            <x-ui.dropdown-link :href="route('register')">
                                 {{ __('Register') }}
-                            </x-dropdown-link>
+                            </x-ui.dropdown-link>
 
                         </x-slot>
-                    </x-dropdown>
+                    </x-ui.dropdown>
                 </div>
                 <nav class="hidden lg:block font-light dark:text-light text-xl font-sans h-full items-center">
                     <a href="{{ route('login') }}" class="mr-6">Log in</a>
@@ -45,6 +45,6 @@
             <main class="bg-welcome min-h-screen w-full bg-no-repeat">
                 {{ $slot }}
             </main>
-            <x-toggle-dark-mode />
+            <x-ui.toggle-dark-mode />
     </body>
 </html>

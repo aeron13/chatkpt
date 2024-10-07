@@ -9,13 +9,13 @@
         </p>
     </header>
 
-    <x-danger-button
+    <x-buttons.danger
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    >{{ __('Delete Account') }}</x-buttons.danger>
 
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" onOpen="" onClose="" focusable>
-        <x-form-box class="" title="Are you sure?">
+    <x-ui.modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" onOpen="" onClose="" focusable>
+        <x-wrappers.form class="" title="Are you sure?">
             <form method="post" action="{{ route('profile.destroy') }}" class="pb-12 pt-6">
                 @csrf
                 @method('delete')
@@ -24,10 +24,10 @@
                     {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                 </p>
 
-                <x-form-block class="mt-6">
-                    <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                <x-wrappers.form-field class="mt-6">
+                    <x-input.label for="password" value="{{ __('Password') }}" class="sr-only" />
 
-                    <x-text-input
+                    <x-input.text
                         id="password"
                         name="password"
                         type="password"
@@ -35,19 +35,19 @@
                         placeholder="{{ __('Password') }}"
                     />
 
-                    <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
-                </x-form-block>
+                    <x-input.error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+                </x-wrappers.form-field>
 
                 <div class="mt-6 flex flex-col-reverse lg:flex-row flex-wrap gap-10 lg:gap-3 justify-end">
-                    <x-secondary-button x-on:click="$dispatch('close')" class="w-fit">
+                    <x-buttons.secondary x-on:click="$dispatch('close')" class="w-fit">
                         {{ __('Cancel') }}
-                    </x-secondary-button>
+                    </x-buttons.secondary>
 
-                    <x-primary-button>
+                    <x-buttons.primary>
                         {{ __('Delete Account') }}
-                    </x-primary-button>
+                    </x-buttons.primary>
                 </div>
             </form>
-        </x-form-box>
-    </x-modal>
+        </x-wrappers.form>
+    </x-ui.modal>
 </section>
