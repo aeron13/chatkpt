@@ -3,7 +3,7 @@
         <div class="lg:pt-[162px]">
             @include('partials/sidebar')
         </div>
-        <div class="col-span-12 lg:col-start-4 pb-[100px] lg:pt-[162px]" x-show="!$store.api.loading"  x-data="conversation" >
+        <div class="col-span-12 lg:col-start-4 pb-[100px] lg:pt-[162px]" x-show="!$store.api.loading"  x-data="conversationPage" >
 
                 <div class="ml-2 mb-[60px] lg:mb-[50px] transform lg:translate-y-[-6px]">
                     <div class="w-full flex flex-col-reverse lg:flex-row lg:justify-between lg:items-center">
@@ -67,24 +67,3 @@
         </div>
     </div>
 </x-app-layout>
-
-<script type="text/javascript">
-    
-
-    document.addEventListener('alpine:init', () => {
-
-        Alpine.data('conversation', () => ({
-            get post() {
-                return this.$store.api.conversation
-            },
-
-            async init() {
-                this.$store.api.setQueryId()
-                await this.$store.api.setConversation()
-                this.post = this.$store.api.conversation
-                this.$store.api.loading = false
-            }
-        }))
-    })
-
-</script>

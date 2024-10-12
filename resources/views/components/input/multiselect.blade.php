@@ -1,4 +1,4 @@
-<div class="relative w-full" x-data="multiselect">
+<div class="relative w-full" x-data="{ showDropdown: false }">
     <div 
         @click="showDropdown = !showDropdown" 
         x-bind="selectedCategories" 
@@ -63,14 +63,3 @@
         </ul>
     </div>
 </div>
-
-<script>
-
-    document.addEventListener('alpine:init', () => {
-
-        Alpine.data('multiselect', () => ({
-            showDropdown: false,
-        }))
-    })
-
-</script>

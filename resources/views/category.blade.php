@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div x-data="category">
+    <div x-data="categoryPage">
         <div class="mx-[20px] lg:mx-[35px] grid lg:grid-cols-12 pt-[162px]">
             @include('partials/sidebar')
             <div class="lg:col-start-4 lg:col-end-12 pb-[100px]" >
@@ -26,18 +26,3 @@
     <x-forms.update-category />
     <x-forms.delete-category />
 </x-app-layout>
-
-<script type="text/javascript">
-
-    document.addEventListener('alpine:init', () => {
-
-        Alpine.data('category', () => ({
-            async init() {
-                this.$store.api.setQueryId()
-                await this.$store.api.setConversations()
-                this.$store.api.loading = false
-            }
-        }))
-
-    })
-</script>

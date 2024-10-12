@@ -1,4 +1,7 @@
+import { Category } from "../classes/Category"
+
 export const addCategoryForm = () => ({
+    
     selectCategories: [],
     selectedCategories: [],
     error: '',

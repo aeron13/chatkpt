@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div x-data="dashboard">
+    <div x-data="dashboardPage">
         <div class="mx-[20px] lg:mx-[35px] grid lg:grid-cols-12 pt-[162px]">
             @include('partials/sidebar')
             <div x-show="$store.api.loading" class="w-full lg:col-start-4 lg:col-end-12  flex justify-center lg:justify-start">
@@ -33,20 +33,3 @@
         </div>
     </div>
 </x-app-layout>
-
-<script type="text/javascript">
-
-    document.addEventListener('alpine:init', () => {
-
-        Alpine.data('dashboard', () => ({
-            empty: true,
-
-            async init() {
-                await this.$store.api.setConversations()
-                this.$store.api.loading = false
-                if (this.$store.api.conversations.length > 0) this.empty = false
-            }
-        }))
-
-    })
-</script>

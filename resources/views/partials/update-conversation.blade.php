@@ -20,28 +20,3 @@
         <x-forms.create-category />
     </div>
 </div>
-
-<script type="text/javascript">
-
-class Category {
-    constructor(data, children, selected) {
-        this.id = data.id
-        this.name = data.name
-        this.color = data.color
-        this.parent_id = data.parent_id
-        this.children = children
-        this.selected = selected
-    }
-}
-
-document.addEventListener('alpine:init', () => {
-
-    Alpine.data('multiselect', () => ({
-        showDropdown: false,
-    }))
-
-    // Alpine.data('addCategoryForm', () => ())
-
-})
-
-</script>

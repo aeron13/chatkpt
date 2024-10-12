@@ -18,15 +18,3 @@
         </li>
     </template>
 </ul>
-
-<script type="text/javascript">
-
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('sidebar', () => ({
-            async init() {
-                await this.$store.api.setCategories()
-            }
-        }))
-    })
-
-</script>
