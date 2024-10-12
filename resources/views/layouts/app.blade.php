@@ -30,6 +30,6 @@
                 <a href="https://margheritamagatti.it" target="_blank">M. M.</a>
             </p>
         </footer>
-        <x-toggle-dark-mode />
+        <x-ui.toggle-dark-mode />
     </body>
 </html>

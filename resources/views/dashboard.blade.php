@@ -3,7 +3,7 @@
         <div class="mx-[20px] lg:mx-[35px] grid lg:grid-cols-12 pt-[162px]">
             @include('partials/sidebar')
             <div x-show="$store.api.loading" class="w-full lg:col-start-4 lg:col-end-12  flex justify-center lg:justify-start">
-                <x-spinner />
+                <x-ui.spinner />
             </div>
             <div x-show="!empty && !$store.api.loading" class="lg:col-start-4 lg:col-end-12 pb-[100px]" >
                 <div class="lg:flex items-center gap-5 justify-between mb-12 lg:mb-14">

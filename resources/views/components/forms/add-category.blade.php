@@ -7,7 +7,7 @@
     @reset-data.window="resetData()" 
     @toggle-category.window="toggleCategory($event.detail)"
 >
-    <x-form-block x-bind:class="`mt-4 flex gap-3 items-center ${ showCreateForm && 'pointer-events-none opacity-20' }`">
+    <x-wrappers.form-field x-bind:class="`mt-4 flex gap-3 items-center ${ showCreateForm && 'pointer-events-none opacity-20' }`">
         <select 
             id="category" 
             name="category" 
@@ -19,8 +19,8 @@
                 <option x-model="cat.id" x-text="cat.name"></option>
             </template>
         </select>
-        <x-multiselect-input />
-    </x-form-block>
+        <x-input.multiselect />
+    </x-wrappers.form-field>
 
     <div x-show="!showCreateForm" class="dark:text-light opacity-90 mt-[22px] mb-[45px]">
         <p class="text-[15px]">Or:</p>
@@ -33,13 +33,13 @@
     </div>
 
     <div x-bind:class="`mt-4 ${ showCreateForm && 'hidden'  }`">
-        <x-primary-button>
+        <x-buttons.primary>
             <span x-show="sending">
-                <x-spinner />
+                <x-ui.spinner />
             </span>
             <span x-text="sending ? 'Saving' : 'Save' ">
             </span>
-        </x-primary-button>
+        </x-buttons.primary>
     </div>
 
 </form>

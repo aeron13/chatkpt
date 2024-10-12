@@ -1,20 +1,20 @@
-<x-modal name="confirm-category-deletion" :show="false" onClose="" onOpen="">
-    <x-form-box class="" title="Are you sure?">
+<x-ui.modal name="confirm-category-deletion" :show="false" onClose="" onOpen="">
+    <x-wrappers.form class="" title="Are you sure?">
             <div x-data="deleteCategoryForm" class="mt-12 flex flex-col-reverse lg:flex-row flex-wrap gap-10 lg:gap-3 pb-10">
-                <x-secondary-button x-on:click="$dispatch('close')" class="w-fit">
+                <x-buttons.secondary x-on:click="$dispatch('close')" class="w-fit">
                     {{ __('Cancel') }}
-                </x-secondary-button>
+                </x-buttons.secondary>
 
-                <x-primary-button @click="handleSubmit" class="justify-center">
+                <x-buttons.primary @click="handleSubmit" class="justify-center">
                     <span x-show="sending">
-                        <x-spinner />
+                        <x-ui.spinner />
                     </span>
                     <span x-text="sending ? 'Deleting' : 'Yes, delete' ">
                     </span>
-                </x-primary-button>
+                </x-buttons.primary>
             </div>
-    </x-form-box>
-</x-modal>
+    </x-wrappers.form>
+</x-ui.modal>
 
 <script>
     document.addEventListener('alpine:init', () => {
