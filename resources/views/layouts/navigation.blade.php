@@ -1,31 +1,86 @@
 <header class="fixed w-full z-[9]">
-    <div class="relative mt-[26px] mx-[35px] rounded-[10px] border-[#767676] border-[0.5px] shadow-glass-2">
-        <!-- <div class="bg-dark h-[78px] absolute z-0 top-[1px] left-[1px] rounded-[9px]" style="width: calc(100% - 2px)"></div> -->
-        <div class="relative flex justify-between items-center rounded-[10px] px-[26px] pt-[18px] pb-[21px] bg-glass-2 backdrop-blur-md z-1">
-            <a href="{{ route('dashboard') }}">
-                <h5 {{ $attributes }} class="font-special text-light text-[26px]">ChatKPT</h5>
-            </a>
-            <nav class="flex font-light text-light text-[16px] font-sans h-full items-center">
-                <a href="{{ route('dashboard') }}" class="mr-10">Dashboard</a>  
-                <!-- Settings Dropdown -->
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
+    <div class="relative mt-[12px] lg:mt-[26px] mx-[14px] lg:mx-[35px] rounded-[10px] border-[#C9C9C9] dark:border-[#767676] border-[0.5px] shadow-strong dark:shadow dark:lg:shadow-glass-2">
+        <div class="relative grid grid-cols-2 lg:grid-cols-12 rounded-[10px] bg-lightglass-2 dark:bg-glass-2 backdrop-blur-md z-1">
+            <div class="lg:col-span-3 px-[17px] py-[13px] lg:px-[26px] lg:pt-[18px] lg:pb-[21px]">
+                <x-ui.application-logo/>
+            </div>
+            <nav class="lg:hidden dashboard-nav flex items-center justify-end">
+                <x-ui.dropdown :align="'center'">
+                    <x-slot name="trigger">
+                        <div class="dark:text-light">Menu</div>
+                        <x-ui.toggle-arrow />
+                    </x-slot>
 
+                    <x-slot name="content">
+                        <div class="mb-12" x-show="$store.api.categoryList.length > 0">
+                            <h3 class="mb-4 text-sm">Categories</h3>
+                            @include('partials/categories-list')
+                        </div>
 
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+                        <div class="">
+                            <x-ui.dropdown-link :href="route('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-ui.dropdown-link>
+                            <x-ui.dropdown-link :href="route('load')">
+                                {{ __('Load') }}
+                            </x-ui.dropdown-link>
 
-                    <x-dropdown-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-dropdown-link>
-                </form>
-                </div>              
+                            <x-ui.dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-ui.dropdown-link>
+
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-ui.dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-ui.dropdown-link>
+                            </form>
+                        </div>
+                    </x-slot>
+                </x-ui.dropdown>
             </nav>
-        
+            <nav class="hidden lg:flex col-span-9 justify-between font-light dark:text-light text-[16px] font-sans h-full items-center pr-[26px]">
+                <div class="flex">
+                    <a href="{{ route('dashboard') }}" class="mr-16">Dashboard</a>
+                    <a href="{{ route('load') }}">Load</a>
+                </div>
+                <!-- Settings Dropdown -->
+                <div class="flex ms-6 items-center">
+                    <div class="flex items-center">
+                        <x-ui.dropdown :align="'right'" width="192">
+                            <x-slot name="trigger">
+                                    <span class="w-[13px] h-[13px] rounded-full bg-dark dark:bg-[#E5E8DB] mr-2" ></span>
+                                    <div>{{ Auth::user()->name }}</div>
+                                    <x-ui.toggle-arrow />
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-ui.dropdown-link :href="route('profile.edit')">
+                                    {{ __('Profile') }}
+                                </x-ui.dropdown-link>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-ui.dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-ui.dropdown-link>
+                                </form>
+                            </x-slot>
+                        </x-ui.dropdown>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </header>
+
 
 

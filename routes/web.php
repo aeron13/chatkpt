@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AppController;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,9 @@ use App\Http\Controllers\AppController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [AppController::class, 'welcome'])->name('welcome');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,20 +29,25 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
-    // Route::get('/load', [AppController::class, 'load'])->name('load');
-    // Route::get('/conversation/{id}', [AppController::class, 'conversation'])->middleware('conversation')->name('conversation');
-    // Route::get('/category/{id}', [AppController::class, 'category'])->name('category');
-    // Route::group(['prefix' => 'api'], function() {
-    //     Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');
-    //     Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store');
-    //     Route::middleware('conversation')->group(function() {
-    //         Route::get('/conversations/{id}', [ConversationController::class, 'show'])->name('conversations.show');
-    //         Route::put('/conversations/{id}', [ConversationController::class, 'update'])->name('conversations.update');
-    //     });
-    //     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-    //     Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
-    //     Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('category.show');
-    // });
+    Route::get('/load', [AppController::class, 'load'])->name('load');
+    Route::get('/conversation/{id}', [AppController::class, 'conversation'])->middleware('conversation')->name('conversation');
+    Route::get('/category/{id}', [AppController::class, 'category'])->name('category');
+    Route::group(['prefix' => 'api'], function() {
+        Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');
+        Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store');
+        Route::middleware('conversation')->group(function() {
+            Route::get('/conversations/{id}', [ConversationController::class, 'show'])->name('conversations.show');
+            Route::put('/conversations/{id}', [ConversationController::class, 'update'])->name('conversations.update');
+            Route::delete('/conversations/{id}', [ConversationController::class, 'delete'])->name('conversations.delete');
+        });
+        Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+        Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
+        Route::middleware('category')->group(function() {
+            Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('category.show');
+            Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('category.update');
+            Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+        });
+    });
 });
 
 require __DIR__.'/auth.php';

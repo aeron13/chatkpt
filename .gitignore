@@ -22,3 +22,5 @@ yarn-error.log
 /my-sql
 Dockerfile
 .dockerignore
+.DS_Store
+/*/*/.DS_Store

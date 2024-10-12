@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ConversationStoreRequest;
 use App\Models\Conversation;
 use App\Models\Message;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Scopes\DeletedScope;
 
 
 class ConversationController extends Controller
@@ -17,12 +19,18 @@ class ConversationController extends Controller
     /**
      * Get the conversations from the db
      */
-    public function index() 
+    public function index(Request $request) 
     {
-        // $conversations = Conversation::where('author_id', Auth::id())->get();
-        // return response()->json(['conversations' => $conversations]);
+        $query = $request['q'];
         
-        return new ConversationCollection(Conversation::where('author_id', Auth::id())->get());
+        if ($query) {
+            return new ConversationCollection(Conversation::where('title', 'like', '%' . $query . '%')
+                ->orderBy('create_time', 'desc')
+                ->get()
+            );
+        }
+
+        return new ConversationCollection(Conversation::orderBy('create_time', 'desc')->get());
     }
     
     /**
@@ -33,12 +41,12 @@ class ConversationController extends Controller
 
         $conversationsData = json_decode($request->input('conversations'));
 
-        // Log::channel('single')->debug('Conversations:', ['data' => $conversationsData[0]]);
-
         foreach ($conversationsData as $conversationData) {
 
             // check if the conversation is already in the db
-            $conversation = Conversation::where([['author_id', Auth::id()], ['current_node', $conversationData->current_node]])->first();
+            $conversation = Conversation::withoutGlobalScope(DeletedScope::class)
+                ->where('current_node', $conversationData->current_node)
+                ->first();
 
             if( empty($conversation) ) {
 
@@ -90,7 +98,8 @@ class ConversationController extends Controller
     public function show(Request $request) 
     {
         $id = request('id');
-        return new ConversationResource(Conversation::where([['author_id', Auth::id()],['id', $id]])->first());
+
+        return new ConversationResource(Conversation::where('id', $id)->first());
     }
 
     /**
@@ -103,7 +112,7 @@ class ConversationController extends Controller
         $data = $request->validated();
         $cat_ids = $data['categories'];
 
-        $conversation = Conversation::where([['id', $id]])->first();
+        $conversation = Conversation::where('id', $id)->first();
         $conversation->update(['categories' => $cat_ids]);
 
         return response()->json(['message' => 'Conversation updated']);
@@ -111,12 +120,10 @@ class ConversationController extends Controller
 
     public function delete(Request $request) 
     {
-        // $id = request('id');
-        // $cat_id = request('input')->category;
-        // $conversation = Conversation::where([['author_id', Auth::id()],['id', $id]])->update(['categories' => $cat_id]);;
-        // $conversation->save();
+        $id = request('id');
 
-        // return Redirect::route('dashboard');
-        return response()->json(['message' => 'Conv deleted']);
+        $conversation = Conversation::where('id', $id)->update([ 'deleted' => 1 ]);
+
+        return response()->json(['message' => "Conversation deleted"]);
     }
 }
